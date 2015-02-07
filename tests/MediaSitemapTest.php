@@ -1,22 +1,12 @@
 <?php
-/**
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- * Date: 12/21/14
- * Time: 11:39 AM
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+namespace League\Sitemap\Tests;
 
-namespace Tests\NilPortugues\Sitemap;
+use League\Sitemap\Item\Media\MediaItem;
+use League\Sitemap\MediaSitemap;
+use PHPUnit_Framework_TestCase;
 
-use NilPortugues\Sitemap\Item\Media\MediaItem;
-use NilPortugues\Sitemap\MediaSitemap;
 
-/**
- * Class MediaSitemapTest
- */
-class MediaSitemapTest extends \PHPUnit_Framework_TestCase
+class MediaSitemapTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var MediaSitemap
@@ -26,49 +16,39 @@ class MediaSitemapTest extends \PHPUnit_Framework_TestCase
     /**
      * @var string
      */
-    protected $exception = 'NilPortugues\Sitemap\SitemapException';
+    protected $exception = '\InvalidArgumentException';
 
-    /**
-     * @test
-     */
-    public function itShouldThrowExceptionIfItemIsNotOfMediaItem()
+
+    public function testItShouldThrowExceptionIfItemIsNotOfMediaItem()
     {
         $this->setExpectedException($this->exception);
         $item = 'not a valid item';
         $this->siteMap->add($item);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldThrowExceptionSitemapChannelDescriptionIsNotValid()
+
+    public function testItShouldThrowExceptionSitemapChannelDescriptionIsNotValid()
     {
         $this->setExpectedException($this->exception);
         $this->siteMap->setDescription('');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldThrowExceptionSitemapChannelTitleIsNotValid()
+
+    public function testItShouldThrowExceptionSitemapChannelTitleIsNotValid()
     {
         $this->setExpectedException($this->exception);
         $this->siteMap->setTitle('');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldThrowExceptionSitemapChannelLinkIsNotValid()
+
+    public function testItShouldThrowExceptionSitemapChannelLinkIsNotValid()
     {
         $this->setExpectedException($this->exception);
         $this->siteMap->setLink('');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldCreateOneSiteMapFile()
+
+    public function testItShouldCreateOneSiteMapFile()
     {
         $this->siteMap->setDescription('This is a description');
         $this->siteMap->setTitle('This is a title');

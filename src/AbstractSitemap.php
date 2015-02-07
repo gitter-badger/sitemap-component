@@ -1,21 +1,8 @@
 <?php
-/**
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- * Date: 12/20/14
- * Time: 7:46 PM
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+namespace League\Sitemap;
 
-namespace NilPortugues\Sitemap;
+use League\Sitemap\Item\ValidatorTrait;
 
-use NilPortugues\Sitemap\Item\ValidatorTrait;
-
-/**
- * Class AbstractSitemap
- * @package NilPortugues\Sitemap
- */
 abstract class AbstractSitemap implements SitemapInterface
 {
     /**
@@ -101,12 +88,12 @@ abstract class AbstractSitemap implements SitemapInterface
     /**
      * @param string $filePath
      *
-     * @throws SitemapException
+     * @throws FileSystemException
      */
     protected function validateFilePath($filePath)
     {
         if (false === (is_dir($filePath) && is_writable($filePath))) {
-            throw new SitemapException(
+            throw new FileSystemException(
                 sprintf("Provided path '%s' does not exist or is not writable.", $filePath)
             );
         }
@@ -126,14 +113,14 @@ abstract class AbstractSitemap implements SitemapInterface
 
     /**
      * @return bool
-     * @throws SitemapException
+     * @throws SitemapFileExistsException
      */
     protected function createOutputPlaceholderFile()
     {
         $filePath = $this->getFullFilePath();
 
         if (true === file_exists($filePath)) {
-            throw new SitemapException(
+            throw new SitemapFileExistsException(
                 sprintf('Cannot create sitemap. File \'%s\' already exists.', $filePath)
             );
         }
@@ -292,12 +279,12 @@ abstract class AbstractSitemap implements SitemapInterface
     /**
      * @param string $url
      *
-     * @throws SitemapException
+     * @throws \InvalidArgumentException
      */
     protected function validateLoc($url)
     {
         if (false === ValidatorTrait::validateLoc($url)) {
-            throw new SitemapException(
+            throw new \InvalidArgumentException(
                 sprintf('Provided url is not valid.')
             );
         }

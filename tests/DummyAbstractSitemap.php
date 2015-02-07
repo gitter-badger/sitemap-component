@@ -1,22 +1,9 @@
 <?php
-/**
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- * Date: 12/21/14
- * Time: 12:22 AM
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+namespace League\Sitemap\Tests;
 
-namespace Tests\NilPortugues\Sitemap;
+use League\Sitemap\AbstractSitemap;
+use League\Sitemap\SitemapException;
 
-use NilPortugues\Sitemap\AbstractSitemap;
-use NilPortugues\Sitemap\SitemapException;
-
-/**
- * Class DummyAbstractSitemap
- * @package Tests\NilPortugues\Sitemap
- */
 class DummyAbstractSitemap extends AbstractSitemap
 {
     /**

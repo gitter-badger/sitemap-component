@@ -1,22 +1,11 @@
 <?php
-/**
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- * Date: 12/21/14
- * Time: 12:16 AM
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+namespace League\Sitemap\Tests;
 
-namespace Tests\NilPortugues\Sitemap;
+use League\Sitemap\Item\Url\UrlItem;
+use League\Sitemap\Sitemap;
+use PHPUnit_Framework_TestCase;
 
-use NilPortugues\Sitemap\Item\Url\UrlItem;
-use NilPortugues\Sitemap\Sitemap;
-
-/**
- * Class SitemapTest
- */
-class SitemapTest extends \PHPUnit_Framework_TestCase
+class SitemapTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var Sitemap
@@ -26,22 +15,18 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
     /**
      * @var string
      */
-    protected $exception = 'NilPortugues\Sitemap\SitemapException';
+    protected $exception = '\InvalidArgumentException';
 
-    /**
-     * @test
-     */
-    public function itShouldThrowExceptionIfItemIsNotOfUrlItem()
+
+    public function testItShouldThrowExceptionIfItemIsNotOfUrlItem()
     {
         $this->setExpectedException($this->exception);
         $item = 'not a valid item';
         $this->siteMap->add($item);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldCreateOneSiteMapFile()
+
+    public function testItShouldCreateOneSiteMapFile()
     {
         for ($i = 0; $i < 20; $i++) {
             $this->addToSiteMap($i);
@@ -74,10 +59,8 @@ class SitemapTest extends \PHPUnit_Framework_TestCase
         $this->siteMap->add($item);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldCreateTwoSiteMapFiles()
+
+    public function testItShouldCreateTwoSiteMapFiles()
     {
         for ($i = 0; $i < 50020; $i++) {
             $this->addToSiteMap($i);

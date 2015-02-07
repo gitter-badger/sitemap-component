@@ -1,14 +1,11 @@
 <?php
 
-namespace Tests\NilPortugues\Sitemap\Item\Video;
+namespace League\Sitemap\Tests\Item\Video;
 
-use NilPortugues\Sitemap\Item\Video\VideoItem;
+use League\Sitemap\Item\Video\VideoItem;
+use PHPUnit_Framework_TestCase;
 
-/**
- * Class VideoItemTest
- * @package Tests\NilPortugues\Sitemap\Item\Video
- */
-class VideoItemTest extends \PHPUnit_Framework_TestCase
+class VideoItemTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var VideoItem
@@ -18,12 +15,10 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
     /**
      * @var string
      */
-    protected $exception = 'NilPortugues\Sitemap\Item\Video\VideoItemException';
+    protected $exception = '\InvalidArgumentException';
 
-    /**
-     * @test
-     */
-    public function itShouldThrowExceptionOnNewInstanceNoLoc()
+
+    public function testItShouldThrowExceptionOnNewInstanceNoLoc()
     {
         $this->setExpectedException($this->exception);
         new VideoItem(
@@ -33,10 +28,8 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldThrowExceptionOnNewInstanceNoContentUrl()
+
+    public function testItShouldThrowExceptionOnNewInstanceNoContentUrl()
     {
         $this->setExpectedException($this->exception);
         new VideoItem(
@@ -46,10 +39,8 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldThrowExceptionOnNewInstanceNoPlayerLoc()
+
+    public function testItShouldThrowExceptionOnNewInstanceNoPlayerLoc()
     {
         $this->setExpectedException($this->exception);
         new VideoItem(
@@ -59,10 +50,8 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldThrowExceptionOnNewInstanceNoValidPlayerEmbedded()
+
+    public function testItShouldThrowExceptionOnNewInstanceNoValidPlayerEmbedded()
     {
         $this->setExpectedException($this->exception);
         $this->item = new VideoItem(
@@ -73,10 +62,8 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldThrowExceptionOnNewInstanceNoValidPlayerAutoPlay()
+
+    public function testItShouldThrowExceptionOnNewInstanceNoValidPlayerAutoPlay()
     {
         $this->setExpectedException($this->exception);
         $this->item = new VideoItem(
@@ -88,10 +75,8 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveThumbnailLoc()
+
+    public function testItShouldHaveThumbnailLoc()
     {
         $this->item->setThumbnailLoc('http://www.example.com/thumbs/123.jpg');
         $this->assertContains(
@@ -100,19 +85,15 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveThumbnailLocAndThrowException()
+
+    public function testItShouldHaveThumbnailLocAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setThumbnailLoc('');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveDescription()
+
+    public function testItShouldHaveDescription()
     {
         $this->item->setDescription('Alkis shows you how to get perfectly done steaks');
         $this->assertContains(
@@ -124,19 +105,15 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         $this->item->setDescription('');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveDescriptionAndThrowException()
+
+    public function testItShouldHaveDescriptionAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setDescription('');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveExpirationDate()
+
+    public function testItShouldHaveExpirationDate()
     {
         $this->item->setExpirationDate('2009-11-05T19:20:30+08:00');
 
@@ -146,19 +123,15 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveExpirationDateAndThrowException()
+
+    public function testItShouldHaveExpirationDateAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setExpirationDate('');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveDuration()
+
+    public function testItShouldHaveDuration()
     {
         $this->item->setDuration('600');
 
@@ -168,19 +141,15 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveDurationAndThrowException()
+
+    public function testItShouldHaveDurationAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setDuration(-1);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveRating()
+
+    public function testItShouldHaveRating()
     {
         $this->item->setRating(4.2);
         $this->assertContains(
@@ -189,19 +158,15 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveRatingAndThrowException()
+
+    public function testItShouldHaveRatingAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setRating(-1);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveViewCount()
+
+    public function testItShouldHaveViewCount()
     {
         $this->item->setViewCount(12345);
 
@@ -211,19 +176,15 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveViewCountAndThrowException()
+
+    public function testItShouldHaveViewCountAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setViewCount(-1);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHavePublicationDate()
+
+    public function testItShouldHavePublicationDate()
     {
         $this->item->setPublicationDate('2007-11-05T19:20:30+08:00');
 
@@ -233,19 +194,15 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHavePublicationDateAndThrowException()
+
+    public function testItShouldHavePublicationDateAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setPublicationDate('');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveFamilyFriendly()
+
+    public function testItShouldHaveFamilyFriendly()
     {
         $this->item->setFamilyFriendly('no');
 
@@ -255,19 +212,15 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveFamilyFriendlyAndThrowException()
+
+    public function testItShouldHaveFamilyFriendlyAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setFamilyFriendly('');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveRestriction()
+
+    public function testItShouldHaveRestriction()
     {
         $this->item->setRestriction('IE GB US CA');
 
@@ -277,19 +230,15 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveRestrictionAndThrowException()
+
+    public function testItShouldHaveRestrictionAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setRestriction('AAA');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveRestrictionRelationship()
+
+    public function testItShouldHaveRestrictionRelationship()
     {
         $this->item->setRestriction('IE GB US CA', 'allow');
         $this->assertContains(
@@ -298,19 +247,15 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveRestrictionRelationshipAndThrowException()
+
+    public function testItShouldHaveRestrictionRelationshipAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setRestriction('IE GB US CA', '');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveGalleryLoc()
+
+    public function testItShouldHaveGalleryLoc()
     {
         $this->item->setGalleryLoc('http://cooking.example.com');
 
@@ -326,10 +271,8 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveGalleryLocAndThrowException()
+
+    public function testItShouldHaveGalleryLocAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setGalleryLoc('');
@@ -338,10 +281,8 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         $this->item->setGalleryLoc('http://cooking.example.com', '');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHavePrice()
+
+    public function testItShouldHavePrice()
     {
         $this->item->setPrice(0.99, 'EUR');
         $this->item->setPrice(0.75, 'EUR');
@@ -349,28 +290,22 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         $this->assertContains('<video:price currency="EUR">0.75</video:price>', $this->item->build());
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHavePriceAndThrowException()
+
+    public function testItShouldHavePriceAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setPrice(-0.99, 'EUR');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHavePriceCurrencyAndThrowException()
+
+    public function testItShouldHavePriceCurrencyAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setPrice(0.99, 'AAAA');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHavePriceType()
+
+    public function testItShouldHavePriceType()
     {
         $this->item->setPrice(0.99, 'EUR', 'rent');
         $this->item->setPrice(0.75, 'EUR', 'rent');
@@ -378,19 +313,15 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         $this->assertContains('<video:price currency="EUR" type="rent">0.75</video:price>', $this->item->build());
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHavePriceTypeAndThrowException()
+
+    public function testItShouldHavePriceTypeAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setPrice(0.75, 'EUR', 'AAAAA');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHavePriceResolution()
+
+    public function testItShouldHavePriceResolution()
     {
         $this->item->setPrice(0.99, 'EUR', 'rent', 'HD');
         $this->item->setPrice(0.75, 'EUR', 'rent', 'SD');
@@ -404,37 +335,29 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHavePriceResolutionAndThrowException()
+
+    public function testItShouldHavePriceResolutionAndThrowException()
     {
         $this->setExpectedException($this->exception, 'Provided price resolution is not a valid value.');
         $this->item->setPrice(0.99, 'EUR', 'rent', 'AAAA');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveCategory()
+
+    public function testItShouldHaveCategory()
     {
         $this->item->setCategory('cooking');
         $this->assertContains('<video:category><![CDATA[cooking]]></video:category>', $this->item->build());
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveCategoryAndThrowException()
+
+    public function testItShouldHaveCategoryAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setCategory('');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveTags()
+
+    public function testItShouldHaveTags()
     {
         $this->item->setTag(array('action', 'drama', 'entrepreneur'));
         $this->assertContains('<video:tag>drama</video:tag>', $this->item->build());
@@ -442,19 +365,15 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         $this->assertContains('<video:tag>entrepreneur</video:tag>', $this->item->build());
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveTagsAndThrowException()
+
+    public function testItShouldHaveTagsAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setTag([]);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveRequiresSubscription()
+
+    public function testItShouldHaveRequiresSubscription()
     {
         $this->item->setRequiresSubscription('yes');
         $this->assertContains(
@@ -463,55 +382,43 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveRequiresSubscriptionAndThrowException()
+
+    public function testItShouldHaveRequiresSubscriptionAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setRequiresSubscription('');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveLive()
+
+    public function testItShouldHaveLive()
     {
         $this->item->setLive('no');
         $this->assertContains('<video:live><![CDATA[no]]></video:live>', $this->item->build());
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveLiveAndThrowException()
+
+    public function testItShouldHaveLiveAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setLive('');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveUploader()
+
+    public function testItShouldHaveUploader()
     {
         $this->item->setUploader('GrillyMcGrillerson');
         $this->assertContains('<video:uploader>GrillyMcGrillerson</video:uploader>', $this->item->build());
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveUploaderAndThrowException()
+
+    public function testItShouldHaveUploaderAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setUploader('');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveUploaderInfo()
+
+    public function testItShouldHaveUploaderInfo()
     {
         $this->item->setUploader('GrillyMcGrillerson', 'http://www.example.com/grillymcgrillerson');
         $this->assertContains(
@@ -520,37 +427,29 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveUploaderInfoAndThrowException()
+
+    public function testItShouldHaveUploaderInfoAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setUploader('GrillyMcGrillerson', '');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHavePlatform()
+
+    public function testItShouldHavePlatform()
     {
         $this->item->setPlatform('web mobile tv');
         $this->assertContains('<video:platform>web mobile tv</video:platform>', $this->item->build());
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHavePlatformAndThrowException()
+
+    public function testItShouldHavePlatformAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setPlatform('aaaa');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHavePlatformRelationship()
+
+    public function testItShouldHavePlatformRelationship()
     {
         $this->item->setPlatform('web mobile tv', 'allow');
         $this->assertContains(
@@ -559,10 +458,8 @@ class VideoItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHavePlatformRelationshipAndThrowException()
+
+    public function testItShouldHavePlatformRelationshipAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setPlatform('web mobile tv', 'AAAAAA');

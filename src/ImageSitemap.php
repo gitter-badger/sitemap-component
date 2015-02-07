@@ -1,21 +1,9 @@
 <?php
-/**
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- * Date: 12/20/14
- * Time: 7:44 PM
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
 
-namespace NilPortugues\Sitemap;
+namespace League\Sitemap;
 
-use NilPortugues\Sitemap\Item\Image\ImageItem;
+use League\Sitemap\Item\Image\ImageItem;
 
-/**
- * Class ImageSitemap
- * @package NilPortugues\Sitemap\Item
- */
 class ImageSitemap extends Sitemap
 {
     /**
@@ -41,13 +29,13 @@ class ImageSitemap extends Sitemap
     /**
      * @param ImageItem $item
      *
-     * @throws SitemapException
+     * @throws \InvalidArgumentException
      */
     protected function validateItemClassType($item)
     {
         if (!($item instanceof ImageItem)) {
-            throw new SitemapException(
-                "Provided \$item is not instance of \\NilPortugues\\Sitemap\\Item\\Image\\ImageItem."
+            throw new \InvalidArgumentException(
+                "Provided \$item is not instance of \\League\\Sitemap\\Item\\Image\\ImageItem."
             );
         }
     }

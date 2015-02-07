@@ -1,22 +1,12 @@
 <?php
-/**
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- * Date: 12/21/14
- * Time: 11:39 AM
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+namespace League\Sitemap\Tests;
 
-namespace Tests\NilPortugues\Sitemap;
+use League\Sitemap\Item\Index\IndexItem;
+use League\Sitemap\IndexSitemap;
+use PHPUnit_Framework_TestCase;
 
-use NilPortugues\Sitemap\Item\Index\IndexItem;
-use NilPortugues\Sitemap\IndexSitemap;
 
-/**
- * Class IndexSitemapTest
- */
-class IndexSitemapTest extends \PHPUnit_Framework_TestCase
+class IndexSitemapTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var IndexSitemap
@@ -26,22 +16,18 @@ class IndexSitemapTest extends \PHPUnit_Framework_TestCase
     /**
      * @var string
      */
-    protected $exception = 'NilPortugues\Sitemap\SitemapException';
+    protected $exception = '\InvalidArgumentException';
 
-    /**
-     * @test
-     */
-    public function itShouldThrowExceptionIfItemIsNotOfIndexItem()
+
+    public function testItShouldThrowExceptionIfItemIsNotOfIndexItem()
     {
         $this->setExpectedException($this->exception);
         $item = 'not a valid item';
         $this->siteMap->add($item);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldCreateOneSiteMapFile()
+
+    public function testItShouldCreateOneSiteMapFile()
     {
         for ($i = 0; $i < 20; $i++) {
             $item = new IndexItem('http://www.example.com/'.$i);

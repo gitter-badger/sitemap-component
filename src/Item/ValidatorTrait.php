@@ -1,11 +1,7 @@
 <?php
 
-namespace NilPortugues\Sitemap\Item;
+namespace League\Sitemap\Item;
 
-/**
- * Trait ValidatorTrait
- * @package NilPortugues\Sitemap\Item
- */
 trait ValidatorTrait
 {
     use SingletonTrait;

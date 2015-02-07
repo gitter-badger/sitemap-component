@@ -1,34 +1,21 @@
 <?php
-/**
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- * Date: 12/10/14
- * Time: 1:59 AM
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+namespace League\Sitemap\Item\Video;
 
-namespace NilPortugues\Sitemap\Item\Video;
+use League\Sitemap\Item\ValidatorTrait;
+use League\Sitemap\Item\Video\Validator\AllowDenyValidator;
+use League\Sitemap\Item\Video\Validator\DescriptionValidator;
+use League\Sitemap\Item\Video\Validator\DurationValidator;
+use League\Sitemap\Item\Video\Validator\FamilyFriendlyValidator;
+use League\Sitemap\Item\Video\Validator\PlatformValidator;
+use League\Sitemap\Item\Video\Validator\PriceAmountValidator;
+use League\Sitemap\Item\Video\Validator\PriceCurrencyValidator;
+use League\Sitemap\Item\Video\Validator\PriceResolutionValidator;
+use League\Sitemap\Item\Video\Validator\PriceTypeValidator;
+use League\Sitemap\Item\Video\Validator\RatingValidator;
+use League\Sitemap\Item\Video\Validator\RestrictionValidator;
+use League\Sitemap\Item\Video\Validator\TagValidator;
+use League\Sitemap\Item\Video\Validator\YesNoValidator;
 
-use NilPortugues\Sitemap\Item\ValidatorTrait;
-use NilPortugues\Sitemap\Item\Video\Validator\AllowDenyValidator;
-use NilPortugues\Sitemap\Item\Video\Validator\DescriptionValidator;
-use NilPortugues\Sitemap\Item\Video\Validator\DurationValidator;
-use NilPortugues\Sitemap\Item\Video\Validator\FamilyFriendlyValidator;
-use NilPortugues\Sitemap\Item\Video\Validator\PlatformValidator;
-use NilPortugues\Sitemap\Item\Video\Validator\PriceAmountValidator;
-use NilPortugues\Sitemap\Item\Video\Validator\PriceCurrencyValidator;
-use NilPortugues\Sitemap\Item\Video\Validator\PriceResolutionValidator;
-use NilPortugues\Sitemap\Item\Video\Validator\PriceTypeValidator;
-use NilPortugues\Sitemap\Item\Video\Validator\RatingValidator;
-use NilPortugues\Sitemap\Item\Video\Validator\RestrictionValidator;
-use NilPortugues\Sitemap\Item\Video\Validator\TagValidator;
-use NilPortugues\Sitemap\Item\Video\Validator\YesNoValidator;
-
-/**
- * Class VideoItemValidator
- * @package NilPortugues\Sitemap\Items
- */
 class VideoItemValidator
 {
     use ValidatorTrait;

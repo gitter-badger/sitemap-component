@@ -1,18 +1,8 @@
 <?php
-/*
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-namespace NilPortugues\Sitemap\Item\Video;
+namespace League\Sitemap\Item\Video;
 
-use NilPortugues\Sitemap\Item\AbstractItem;
+use League\Sitemap\Item\AbstractItem;
 
-/**
- * Class VideoItem
- * @package NilPortugues\Sitemap\Items
- */
 class VideoItem extends AbstractItem
 {
     /**
@@ -23,7 +13,7 @@ class VideoItem extends AbstractItem
     /**
      * @var string
      */
-    protected $exception = 'NilPortugues\Sitemap\Item\Video\VideoItemException';
+    protected $exception = 'League\Sitemap\Item\Video\VideoItemException';
 
     /**
      * @param $title
@@ -77,7 +67,7 @@ class VideoItem extends AbstractItem
     /**
      * @param $title
      *
-     * @throws VideoItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     protected function setTitle($title)
@@ -89,7 +79,6 @@ class VideoItem extends AbstractItem
             'video:title',
             $this->validator,
             'validateTitle',
-            $this->exception,
             'Provided title value is not a valid.'
         );
 
@@ -99,7 +88,7 @@ class VideoItem extends AbstractItem
     /**
      * @param $loc
      *
-     * @throws VideoItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     protected function setContentLoc($loc)
@@ -111,7 +100,6 @@ class VideoItem extends AbstractItem
             'video:content_loc',
             $this->validator,
             'validateContentLoc',
-            $this->exception,
             'Provided content URL is not a valid.'
         );
 
@@ -124,7 +112,7 @@ class VideoItem extends AbstractItem
      * @param $playerEmbedded
      * @param $playerAutoPlay
      *
-     * @throws VideoItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     protected function setPlayerLoc($loc, $playerEmbedded, $playerAutoPlay)
@@ -143,7 +131,7 @@ class VideoItem extends AbstractItem
     /**
      * @param $loc
      *
-     * @throws VideoItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setThumbnailLoc($loc)
@@ -155,7 +143,6 @@ class VideoItem extends AbstractItem
             'video:thumbnail_loc',
             $this->validator,
             'validateThumbnailLoc',
-            $this->exception,
             'Provided thumbnail URL is not a valid.'
         );
 
@@ -165,7 +152,7 @@ class VideoItem extends AbstractItem
     /**
      * @param $description
      *
-     * @throws VideoItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setDescription($description)
@@ -177,7 +164,6 @@ class VideoItem extends AbstractItem
             'video:description',
             $this->validator,
             'validateDescription',
-            $this->exception,
             'Provided description value is not a valid.'
         );
 
@@ -187,7 +173,7 @@ class VideoItem extends AbstractItem
     /**
      * @param $duration
      *
-     * @throws VideoItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setDuration($duration)
@@ -199,7 +185,6 @@ class VideoItem extends AbstractItem
             'video:duration',
             $this->validator,
             'validateDuration',
-            $this->exception,
             'Provided duration value is not a valid.'
         );
 
@@ -209,7 +194,7 @@ class VideoItem extends AbstractItem
     /**
      * @param $expirationDate
      *
-     * @throws VideoItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setExpirationDate($expirationDate)
@@ -221,7 +206,6 @@ class VideoItem extends AbstractItem
             'video:expiration_date',
             $this->validator,
             'validateExpirationDate',
-            $this->exception,
             'Provided expiration date value is not a valid.'
         );
 
@@ -231,7 +215,7 @@ class VideoItem extends AbstractItem
     /**
      * @param $rating
      *
-     * @throws VideoItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setRating($rating)
@@ -243,7 +227,6 @@ class VideoItem extends AbstractItem
             'video:rating',
             $this->validator,
             'validateRating',
-            $this->exception,
             'Provided rating value is not a valid.'
         );
 
@@ -253,7 +236,7 @@ class VideoItem extends AbstractItem
     /**
      * @param $viewCount
      *
-     * @throws VideoItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setViewCount($viewCount)
@@ -265,7 +248,6 @@ class VideoItem extends AbstractItem
             'video:view_count',
             $this->validator,
             'validateViewCount',
-            $this->exception,
             'Provided view count value is not a valid.'
         );
 
@@ -275,7 +257,7 @@ class VideoItem extends AbstractItem
     /**
      * @param $publicationDate
      *
-     * @throws VideoItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setPublicationDate($publicationDate)
@@ -287,7 +269,6 @@ class VideoItem extends AbstractItem
             'video:publication_date',
             $this->validator,
             'validatePublicationDate',
-            $this->exception,
             'Provided publication date value is not a valid.'
         );
 
@@ -297,7 +278,7 @@ class VideoItem extends AbstractItem
     /**
      * @param $familyFriendly
      *
-     * @throws VideoItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setFamilyFriendly($familyFriendly)
@@ -309,7 +290,6 @@ class VideoItem extends AbstractItem
             'video:family_friendly',
             $this->validator,
             'validateFamilyFriendly',
-            $this->exception,
             'Provided family friendly value is not a valid.'
         );
 
@@ -320,7 +300,7 @@ class VideoItem extends AbstractItem
      * @param      $restriction
      * @param null $relationship
      *
-     * @throws VideoItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setRestriction($restriction, $relationship = null)
@@ -329,7 +309,6 @@ class VideoItem extends AbstractItem
             $restriction,
             $this->validator,
             'validateRestriction',
-            $this->exception,
             'Provided restriction is not a valid value.'
         );
 
@@ -343,7 +322,7 @@ class VideoItem extends AbstractItem
     /**
      * @param $relationship
      *
-     * @throws VideoItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     protected function setRestrictionRelationship($relationship)
@@ -355,8 +334,7 @@ class VideoItem extends AbstractItem
                 'relationship',
                 $this->validator,
                 'validateRestrictionRelationship',
-                $this->exception,
-                'Provided restriction relationship is not a valid value.'
+                    'Provided restriction relationship is not a valid value.'
             );
         }
 
@@ -382,7 +360,7 @@ class VideoItem extends AbstractItem
      * @param string $type
      * @param string $resolution
      *
-     * @throws VideoItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return VideoItem
      */
     public function setPrice($price, $currency, $type = null, $resolution = null)
@@ -395,7 +373,7 @@ class VideoItem extends AbstractItem
     /**
      * @param $category
      *
-     * @throws VideoItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setCategory($category)
@@ -407,7 +385,6 @@ class VideoItem extends AbstractItem
             'video:category',
             $this->validator,
             'validateCategory',
-            $this->exception,
             'Provided category value is not a valid.'
         );
 
@@ -417,7 +394,7 @@ class VideoItem extends AbstractItem
     /**
      * @param array $tag
      *
-     * @throws VideoItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setTag(array $tag)
@@ -426,7 +403,6 @@ class VideoItem extends AbstractItem
             $tag,
             $this->validator,
             'validateTag',
-            $this->exception,
             'Provided tag array is not a valid value.'
         );
 
@@ -440,7 +416,7 @@ class VideoItem extends AbstractItem
     /**
      * @param $requires
      *
-     * @throws VideoItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setRequiresSubscription($requires)
@@ -452,7 +428,6 @@ class VideoItem extends AbstractItem
             'video:requires_subscription',
             $this->validator,
             'validateRequiresSubscription',
-            $this->exception,
             'Provided requires subscription value is not a valid.'
         );
 
@@ -463,7 +438,7 @@ class VideoItem extends AbstractItem
      * @param      $uploader
      * @param null $info
      *
-     * @throws VideoItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return string
      */
     public function setUploader($uploader, $info = null)
@@ -475,7 +450,7 @@ class VideoItem extends AbstractItem
      * @param      $platform
      * @param null $relationship
      *
-     * @throws VideoItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setPlatform($platform, $relationship = null)
@@ -484,7 +459,6 @@ class VideoItem extends AbstractItem
             $platform,
             $this->validator,
             'validatePlatform',
-            $this->exception,
             'Provided platform is not a valid value.'
         );
 
@@ -498,7 +472,7 @@ class VideoItem extends AbstractItem
     /**
      * @param $relationship
      *
-     * @throws VideoItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     protected function setPlatformRelationship($relationship)
@@ -510,8 +484,7 @@ class VideoItem extends AbstractItem
                 'relationship',
                 $this->validator,
                 'validatePlatformRelationship',
-                $this->exception,
-                'Provided relationship is not a valid value.'
+                    'Provided relationship is not a valid value.'
             );
         }
 
@@ -521,7 +494,7 @@ class VideoItem extends AbstractItem
     /**
      * @param $live
      *
-     * @throws VideoItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setLive($live)
@@ -533,7 +506,6 @@ class VideoItem extends AbstractItem
             'video:live',
             $this->validator,
             'validateLive',
-            $this->exception,
             'Provided live value is not a valid.'
         );
 

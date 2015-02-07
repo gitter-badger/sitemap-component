@@ -1,19 +1,6 @@
 <?php
-/**
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- * Date: 12/12/14
- * Time: 4:25 PM
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+namespace League\Sitemap\Item\News\Validator;
 
-namespace NilPortugues\Sitemap\Item\News\Validator;
-
-/**
- * Class AccessValidator
- * @package NilPortugues\Sitemap\Item\News\Validator
- */
 final class AccessValidator
 {
     /**

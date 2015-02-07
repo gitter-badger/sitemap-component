@@ -1,21 +1,8 @@
 <?php
-/**
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- * Date: 12/20/14
- * Time: 7:45 PM
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+namespace League\Sitemap;
 
-namespace NilPortugues\Sitemap;
+use League\Sitemap\Item\Video\VideoItem;
 
-use NilPortugues\Sitemap\Item\Video\VideoItem;
-
-/**
- * Class VideoSitemap
- * @package NilPortugues\Sitemap
- */
 class VideoSitemap extends ImageSitemap
 {
     /**
@@ -59,13 +46,13 @@ class VideoSitemap extends ImageSitemap
     /**
      * @param VideoItem $item
      *
-     * @throws SitemapException
+     * @throws \InvalidArgumentException
      */
     protected function validateItemClassType($item)
     {
         if (!($item instanceof VideoItem)) {
-            throw new SitemapException(
-                "Provided \$item is not instance of \\NilPortugues\\Sitemap\\Item\\Video\\VideoItem."
+            throw new \InvalidArgumentException(
+                "Provided \$item is not instance of \\League\\Sitemap\\Item\\Video\\VideoItem."
             );
         }
     }

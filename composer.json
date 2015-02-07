@@ -1,6 +1,6 @@
 {
     "name":"nilportugues/sitemap-component",
-    "description":"Standalone sitemap builder 100% standards compliant. Build for PHP5.3 and above.",
+    "description":"League/Sitemap is a 100% standards compliant sitemap builder library.",
     "keywords": [ "sitemap", "xml", "image", "news", "video", "media", "index" ],
     "type":"library",
     "homepage":"http://nilportugues.com",
@@ -14,6 +14,10 @@
             "role":"Lead Developer"
         }
     ],
+    "support": {
+        "forum": "https://groups.google.com/forum/#!forum/thephpleague",
+        "issues": "https://github.com/thephpleague/url/issues"
+    },
     "require":{
         "php":">=5.4"
     },
@@ -36,12 +40,12 @@
     },
     "autoload":{
         "psr-4":{
-            "NilPortugues\\Sitemap\\":"src/"
+            "League\\Sitemap\\":"src/"
         }
     },
     "autoload-dev":{
         "psr-4":{
-            "Tests\\NilPortugues\\Sitemap\\":"tests/"
+            "League\\Sitemap\\Tests\\":"tests/"
         }
     },
     "minimum-stability": "stable"

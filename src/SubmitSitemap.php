@@ -1,19 +1,6 @@
 <?php
-/**
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- * Date: 12/21/14
- * Time: 8:11 PM
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+namespace League\Sitemap;
 
-namespace NilPortugues\Sitemap;
-
-/**
- * Class SubmitSitemap
- * @package NilPortugues\Sitemap
- */
 class SubmitSitemap
 {
     /**
@@ -30,12 +17,12 @@ class SubmitSitemap
      * @param string $url
      *
      * @return array
-     * @throws SitemapException
+     * @throws \InvalidArgumentException
      */
     public static function send($url)
     {
         if (false === filter_var($url, FILTER_VALIDATE_URL, ['options' => ['flags' => FILTER_FLAG_PATH_REQUIRED]])) {
-            throw new SitemapException("The value for \$url is not a valid URL resource.");
+            throw new \InvalidArgumentException("The value for \$url is not a valid URL resource.");
         }
 
         return self::submitSitemap($url);

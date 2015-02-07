@@ -8,18 +8,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Tests\NilPortugues\Sitemap;
+namespace League\Sitemap\Tests;
 
-use NilPortugues\Sitemap\Item\Url\UrlItem;
-use NilPortugues\Sitemap\Item\Video\VideoItem;
-use NilPortugues\Sitemap\Sitemap;
-use NilPortugues\Sitemap\VideoSitemap;
+use League\Sitemap\Item\Video\VideoItem;
+use League\Sitemap\VideoSitemap;
+use PHPUnit_Framework_TestCase;
 
-/**
- * Class VideoSitemapTest
- * @package Tests\NilPortugues\Sitemap
- */
-class VideoSitemapTest extends \PHPUnit_Framework_TestCase
+
+class VideoSitemapTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var VideoSitemap
@@ -29,22 +25,18 @@ class VideoSitemapTest extends \PHPUnit_Framework_TestCase
     /**
      * @var string
      */
-    protected $exception = 'NilPortugues\Sitemap\SitemapException';
+    protected $exception = '\InvalidArgumentException';
 
-    /**
-     * @test
-     */
-    public function itShouldThrowExceptionIfItemIsNotOfVideoItem()
+
+    public function testItShouldThrowExceptionIfItemIsNotOfVideoItem()
     {
         $this->setExpectedException($this->exception);
         $item = 'not a valid item';
         $this->siteMap->add($item);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldCreateOneSiteMapFile()
+
+    public function testItShouldCreateOneSiteMapFile()
     {
         for ($i = 0; $i < 20; $i++) {
             $this->addToSiteMap($i);
@@ -80,10 +72,8 @@ class VideoSitemapTest extends \PHPUnit_Framework_TestCase
         $this->siteMap->add($item, 'http://www.example.com/gallery-1.html');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldCreateTwoSiteMapFiles()
+
+    public function testItShouldCreateTwoSiteMapFiles()
     {
         for ($i = 0; $i < 50020; $i++) {
             $this->addToSiteMap($i);

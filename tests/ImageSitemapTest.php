@@ -1,23 +1,12 @@
 <?php
-/**
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- * Date: 12/21/14
- * Time: 5:41 PM
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+namespace League\Sitemap\Tests;
 
-namespace Tests\NilPortugues\Sitemap;
+use League\Sitemap\ImageSitemap;
+use League\Sitemap\Item\Image\ImageItem;
+use PHPUnit_Framework_TestCase;
 
-use NilPortugues\Sitemap\ImageSitemap;
-use NilPortugues\Sitemap\Item\Image\ImageItem;
 
-/**
- * Class ImageSitemapTest
- * @package Tests\NilPortugues\Sitemap
- */
-class ImageSitemapTest extends \PHPUnit_Framework_TestCase
+class ImageSitemapTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var ImageSitemap
@@ -27,22 +16,18 @@ class ImageSitemapTest extends \PHPUnit_Framework_TestCase
     /**
      * @var string
      */
-    protected $exception = 'NilPortugues\Sitemap\SitemapException';
+    protected $exception = '\InvalidArgumentException';
 
-    /**
-     * @test
-     */
-    public function itShouldThrowExceptionIfItemIsNotOfImageItem()
+
+    public function testItShouldThrowExceptionIfItemIsNotOfImageItem()
     {
         $this->setExpectedException($this->exception);
         $item = 'not a valid item';
         $this->siteMap->add($item);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldCreateOneSiteMapFile()
+
+    public function testItShouldCreateOneSiteMapFile()
     {
         for ($i = 0; $i < 20; $i++) {
             $item = new ImageItem('http://www.example.com/' . $i.'.jpg');
@@ -66,10 +51,8 @@ class ImageSitemapTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    /**
-     * @test
-     */
-    public function itShouldCreateTwoSiteMapFiles()
+
+    public function testItShouldCreateTwoSiteMapFiles()
     {
         $j = 1;
         $url = 'http://www.example.com/gallery-' . $j .'.html';

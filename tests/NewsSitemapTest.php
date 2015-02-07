@@ -1,22 +1,11 @@
 <?php
-/**
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- * Date: 12/21/14
- * Time: 11:39 AM
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+namespace League\Sitemap\Tests;
 
-namespace Tests\NilPortugues\Sitemap;
+use League\Sitemap\Item\News\NewsItem;
+use League\Sitemap\NewsSitemap;
+use PHPUnit_Framework_TestCase;
 
-use NilPortugues\Sitemap\Item\News\NewsItem;
-use NilPortugues\Sitemap\NewsSitemap;
-
-/**
- * Class NewsSitemapTest
- */
-class NewsSitemapTest extends \PHPUnit_Framework_TestCase
+class NewsSitemapTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var NewsSitemap
@@ -26,22 +15,18 @@ class NewsSitemapTest extends \PHPUnit_Framework_TestCase
     /**
      * @var string
      */
-    protected $exception = 'NilPortugues\Sitemap\SitemapException';
+    protected $exception = '\InvalidArgumentException';
 
-    /**
-     * @test
-     */
-    public function itShouldThrowExceptionIfItemIsNotOfNewsItem()
+
+    public function testItShouldThrowExceptionIfItemIsNotOfNewsItem()
     {
         $this->setExpectedException($this->exception);
         $item = 'not a valid item';
         $this->siteMap->add($item);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldCreateOneSiteMapFile()
+
+    public function testItShouldCreateOneSiteMapFile()
     {
         for ($i = 0; $i < 20; $i++) {
             $item = new NewsItem(

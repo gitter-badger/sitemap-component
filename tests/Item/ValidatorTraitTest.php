@@ -1,14 +1,11 @@
 <?php
 
-namespace itShoulds\NilPortugues\Sitemap\Item;
+namespace itShoulds\League\Sitemap\Item;
 
-use NilPortugues\Sitemap\Item\ValidatorTrait;
+use League\Sitemap\Item\ValidatorTrait;
+use PHPUnit_Framework_TestCase;
 
-/**
- * Class ValidatorTraititShould
- * @package itShoulds\NilPortugues\Sitemap\Item
- */
-class ValidatorTraitTest extends \PHPUnit_Framework_TestCase
+class ValidatorTraitTest extends PHPUnit_Framework_TestCase
 {
     use ValidatorTrait;
 
@@ -16,28 +13,22 @@ class ValidatorTraitTest extends \PHPUnit_Framework_TestCase
     {
     }
 
-    /**
-     * @test
-     */
-    public function itShouldValidateLoc()
+
+    public function testItShouldValidateLoc()
     {
         $result = $this->validateLoc('http://google.com/news');
         $this->assertEquals('http://google.com/news', $result);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldNotValidateLoc()
+
+    public function testItShouldNotValidateLoc()
     {
         $result = $this->validateLoc('not-a-url');
         $this->assertEquals(false, $result);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldValidateDateValidFormat1()
+
+    public function testItShouldValidateDateValidFormat1()
     {
         $date   = new \DateTime('now');
         $date   = $date->format('c');
@@ -46,10 +37,8 @@ class ValidatorTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($date, $result);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldValidateDateValidFormat2()
+
+    public function testItShouldValidateDateValidFormat2()
     {
         $date   = new \DateTime('now');
         $date   = $date->format('Y-m-d\TH:i:sP');
@@ -58,10 +47,8 @@ class ValidatorTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($date, $result);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldValidateDateValidFormat3()
+
+    public function testItShouldValidateDateValidFormat3()
     {
         $date   = new \DateTime('now');
         $date   = $date->format('Y-m-d');
@@ -70,10 +57,8 @@ class ValidatorTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($date, $result);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldValidateDateInvalidFormat()
+
+    public function testItShouldValidateDateInvalidFormat()
     {
         $date   = '2A-13-03';
         $result = $this->validateDate($date);

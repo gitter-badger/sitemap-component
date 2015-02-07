@@ -1,27 +1,14 @@
 <?php
-/**
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- * Date: 12/12/14
- * Time: 5:25 PM
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+namespace League\Sitemap\Item\Video;
 
-namespace NilPortugues\Sitemap\Item\Video;
+use League\Sitemap\Item\AbstractItem;
 
-use NilPortugues\Sitemap\Item\AbstractItem;
-
-/**
- * Class VideoItemUploaderTags
- * @package NilPortugues\Sitemap\Item\Video
- */
 abstract class VideoItemUploaderTags extends AbstractItem
 {
     /**
      * @var string
      */
-    protected static $exception = 'NilPortugues\Sitemap\Item\Video\VideoItemException';
+    protected static $exception = 'League\Sitemap\Item\Video\VideoItemException';
 
     /**
      * @param VideoItemValidator $validator

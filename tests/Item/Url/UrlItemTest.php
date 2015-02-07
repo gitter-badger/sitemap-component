@@ -1,19 +1,16 @@
 <?php
 
-namespace Tests\NilPortugues\Sitemap\Item\Url;
+namespace League\Sitemap\Tests\Item\Url;
 
-use NilPortugues\Sitemap\Item\Url\UrlItem;
+use League\Sitemap\Item\Url\UrlItem;
+use PHPUnit_Framework_TestCase;
 
-/**
- * Class UrlItemTest
- * @package Tests\NilPortugues\Sitemap\Item\Url\UrlItem
- */
-class UrlItemTest extends \PHPUnit_Framework_TestCase
+class UrlItemTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var string
      */
-    protected $exception = '\NilPortugues\Sitemap\Item\Url\UrlItemException';
+    protected $exception = '\InvalidArgumentException';
 
     /**
      * @var string
@@ -30,137 +27,107 @@ class UrlItemTest extends \PHPUnit_Framework_TestCase
      */
     protected $item;
 
-    /**
-     * @test
-     */
-    public function itShouldOutputChangeFreqAlways()
+
+    public function testItShouldOutputChangeFreqAlways()
     {
         $this->item->setChangeFreq('always');
         $this->assertContains('<changefreq>always</changefreq>', $this->item->build());
     }
 
-    /**
-     * @test
-     */
-    public function itShouldOutputChangeFreqNever()
+
+    public function testItShouldOutputChangeFreqNever()
     {
         $this->item->setChangeFreq('never');
         $this->assertContains('<changefreq>never</changefreq>', $this->item->build());
     }
 
-    /**
-     * @test
-     */
-    public function itShouldOutputChangeFreqHourly()
+
+    public function testItShouldOutputChangeFreqHourly()
     {
         $this->item->setChangeFreq('hourly');
         $this->assertContains('<changefreq>hourly</changefreq>', $this->item->build());
     }
 
-    /**
-     * @test
-     */
-    public function itShouldOutputChangeFreqDaily()
+
+    public function testItShouldOutputChangeFreqDaily()
     {
         $this->item->setChangeFreq('daily');
         $this->assertContains('<changefreq>daily</changefreq>', $this->item->build());
     }
 
-    /**
-     * @test
-     */
-    public function itShouldOutputChangeFreqMonthly()
+
+    public function testItShouldOutputChangeFreqMonthly()
     {
         $this->item->setChangeFreq('monthly');
         $this->assertContains('<changefreq>monthly</changefreq>', $this->item->build());
     }
 
-    /**
-     * @test
-     */
-    public function itShouldOutputChangeFreqYearly()
+
+    public function testItShouldOutputChangeFreqYearly()
     {
         $this->item->setChangeFreq('yearly');
         $this->assertContains('<changefreq>yearly</changefreq>', $this->item->build());
     }
 
-    /**
-     * @test
-     */
-    public function itShouldOutputChangeFreqAndThrowException()
+
+    public function testItShouldOutputChangeFreqAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setChangeFreq('aaaaa');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldOutputPriorityValid1()
+
+    public function testItShouldOutputPriorityValid1()
     {
         $this->item->setPriority(0.1);
         $this->assertContains('<priority>0.1</priority>', $this->item->build());
     }
 
-    /**
-     * @test
-     */
-    public function itShouldOutputPriorityValid2()
+
+    public function testItShouldOutputPriorityValid2()
     {
         $this->item->setPriority(0.9);
         $this->assertContains('<priority>0.9</priority>', $this->item->build());
     }
 
-    /**
-     * @test
-     */
-    public function itShouldOutputPriorityAndThrowException1()
+
+    public function testItShouldOutputPriorityAndThrowException1()
     {
         $this->setExpectedException($this->exception);
         $this->item->setPriority(10.5);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldOutputPriorityAndThrowException2()
+
+    public function testItShouldOutputPriorityAndThrowException2()
     {
         $this->setExpectedException($this->exception);
         $this->item->setPriority(-0.1);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldOutputPriorityAndNotPrintPriority()
+
+    public function testItShouldOutputPriorityAndNotPrintPriority()
     {
         $this->item->setPriority(1.0);
         $this->assertNotContains('<priority>1</priority>', $this->item->build());
         $this->assertNotContains('<priority>1.0</priority>', $this->item->build());
     }
 
-    /**
-     * @test
-     */
-    public function itShouldOutputLastMod()
+
+    public function testItShouldOutputLastMod()
     {
         $this->item->setLastMod($this->lastmod);
         $this->assertContains('<lastmod>' . $this->lastmod . '</lastmod>', $this->item->build());
     }
 
-    /**
-     * @test
-     */
-    public function itShouldOutputLastModAndThrowException()
+
+    public function testItShouldOutputLastModAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setLastMod('a');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldOutputLocAndThrowException()
+
+    public function testItShouldOutputLocAndThrowException()
     {
         $this->setExpectedException($this->exception);
         new UrlItem('aaaa');

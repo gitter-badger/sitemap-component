@@ -1,28 +1,10 @@
 <?php
-/**
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- * Date: 12/12/14
- * Time: 5:24 PM
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+namespace League\Sitemap\Item\Video;
 
-namespace NilPortugues\Sitemap\Item\Video;
+use League\Sitemap\Item\AbstractItem;
 
-use NilPortugues\Sitemap\Item\AbstractItem;
-
-/**
- * Class VideoItemPriceTags
- * @package NilPortugues\Sitemap\Item\Video
- */
 abstract class VideoItemPriceTags extends AbstractItem
 {
-    /**
-     * @var string
-     */
-    protected static $exception = 'NilPortugues\Sitemap\Item\Video\VideoItemException';
-
     /**
      * @param VideoItemValidator $validator
      * @param                    $price
@@ -54,7 +36,6 @@ abstract class VideoItemPriceTags extends AbstractItem
             $price,
             $validator,
             'validatePrice',
-            self::$exception,
             'Provided price is not a valid value.'
         );
     }
@@ -72,7 +53,6 @@ abstract class VideoItemPriceTags extends AbstractItem
             'currency',
             $validator,
             'validatePriceCurrency',
-            self::$exception,
             'Provided price currency is not a valid value.'
         );
     }
@@ -91,7 +71,6 @@ abstract class VideoItemPriceTags extends AbstractItem
                 'type',
                 $validator,
                 'validatePriceType',
-                self::$exception,
                 'Provided price type is not a valid value.'
             );
         }
@@ -111,7 +90,6 @@ abstract class VideoItemPriceTags extends AbstractItem
                 'resolution',
                 $validator,
                 'validatePriceResolution',
-                self::$exception,
                 'Provided price resolution is not a valid value.'
             );
         }

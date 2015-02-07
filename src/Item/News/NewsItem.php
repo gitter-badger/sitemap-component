@@ -1,29 +1,14 @@
 <?php
-/*
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-namespace NilPortugues\Sitemap\Item\News;
+namespace League\Sitemap\Item\News;
 
-use NilPortugues\Sitemap\Item\AbstractItem;
+use League\Sitemap\Item\AbstractItem;
 
-/**
- * Class NewsItem
- * @package NilPortugues\Sitemap\Items
- */
 class NewsItem extends AbstractItem
 {
     /**
      * @var NewsItemValidator
      */
     protected $validator;
-
-    /**
-     * @var string
-     */
-    protected $exception = 'NilPortugues\Sitemap\Item\News\NewsItemException';
 
     /**
      * @param $loc
@@ -68,7 +53,7 @@ class NewsItem extends AbstractItem
     /**
      * @param $loc
      *
-     * @throws NewsItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     protected function setLoc($loc)
@@ -80,7 +65,6 @@ class NewsItem extends AbstractItem
             'loc',
             $this->validator,
             'validateLoc',
-            $this->exception,
             'Provided URL is not a valid value.'
         );
 
@@ -90,7 +74,7 @@ class NewsItem extends AbstractItem
     /**
      * @param $title
      *
-     * @throws NewsItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     protected function setTitle($title)
@@ -102,7 +86,6 @@ class NewsItem extends AbstractItem
             'news:title',
             $this->validator,
             'validateTitle',
-            $this->exception,
             'Provided title is not a valid value.'
         );
 
@@ -112,7 +95,7 @@ class NewsItem extends AbstractItem
     /**
      * @param $date
      *
-     * @throws NewsItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     protected function setPublicationDate($date)
@@ -124,7 +107,6 @@ class NewsItem extends AbstractItem
             'news:publication_date',
             $this->validator,
             'validatePublicationDate',
-            $this->exception,
             'Provided publication date is not a valid value.'
         );
 
@@ -150,7 +132,7 @@ class NewsItem extends AbstractItem
     /**
      * @param $name
      *
-     * @throws NewsItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     protected function setPublicationName($name)
@@ -162,7 +144,6 @@ class NewsItem extends AbstractItem
             'news:name',
             $this->validator,
             'validateName',
-            $this->exception,
             'Provided publication name is not a valid value.'
         );
 
@@ -172,7 +153,7 @@ class NewsItem extends AbstractItem
     /**
      * @param $language
      *
-     * @throws NewsItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     protected function setPublicationLanguage($language)
@@ -184,7 +165,6 @@ class NewsItem extends AbstractItem
             'news:language',
             $this->validator,
             'validateLanguage',
-            $this->exception,
             'Provided publication language is not a valid value.'
         );
 
@@ -195,7 +175,7 @@ class NewsItem extends AbstractItem
     /**
      * @param $access
      *
-     * @throws NewsItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setAccess($access)
@@ -207,7 +187,6 @@ class NewsItem extends AbstractItem
             'news:access',
             $this->validator,
             'validateAccess',
-            $this->exception,
             'Provided access date is not a valid value.'
         );
 
@@ -218,7 +197,7 @@ class NewsItem extends AbstractItem
      * @param $genres
      *
      * @return $this
-     * @throws NewsItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      */
     public function setGenres($genres)
     {
@@ -229,7 +208,6 @@ class NewsItem extends AbstractItem
             'news:genres',
             $this->validator,
             'validateGenres',
-            $this->exception,
             'Provided genres list is not a valid value.'
         );
 
@@ -240,7 +218,7 @@ class NewsItem extends AbstractItem
      * @param $keywords
      *
      * @return $this
-     * @throws NewsItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      */
     public function setKeywords($keywords)
     {
@@ -251,7 +229,6 @@ class NewsItem extends AbstractItem
             'news:keywords',
             $this->validator,
             'validateKeywords',
-            $this->exception,
             'Provided keyword list is not a valid value.'
         );
 
@@ -261,7 +238,7 @@ class NewsItem extends AbstractItem
     /**
      * @param $stockTickers
      *
-     * @throws NewsItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setStockTickers($stockTickers)
@@ -273,7 +250,6 @@ class NewsItem extends AbstractItem
             'news:stock_tickers',
             $this->validator,
             'validateStockTickers',
-            $this->exception,
             'Provided stock tickers is not a valid value.'
         );
 

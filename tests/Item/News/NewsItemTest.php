@@ -1,13 +1,10 @@
 <?php
-namespace Tests\NilPortugues\Sitemap\Item\News;
+namespace League\Sitemap\Tests\Item\News;
 
-use NilPortugues\Sitemap\Item\News\NewsItem;
+use League\Sitemap\Item\News\NewsItem;
+use PHPUnit_Framework_TestCase;
 
-/**
- * Class NewsItemTest
- * @package Tests\NilPortugues\Sitemap\Item\News
- */
-class NewsItemTest extends \PHPUnit_Framework_TestCase
+class NewsItemTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var string
@@ -42,12 +39,10 @@ class NewsItemTest extends \PHPUnit_Framework_TestCase
     /**
      * @var string
      */
-    protected $exception = 'NilPortugues\Sitemap\Item\News\NewsItemException';
+    protected $exception = '\InvalidArgumentException';
 
-    /**
-     * @test
-     */
-    public function itShouldThrowExceptionForLoc()
+
+    public function testItShouldThrowExceptionForLoc()
     {
         $this->setExpectedException($this->exception);
         $this->item = new NewsItem(
@@ -59,10 +54,8 @@ class NewsItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldThrowExceptionForTitle()
+
+    public function testItShouldThrowExceptionForTitle()
     {
         $this->setExpectedException($this->exception);
         $this->item = new NewsItem(
@@ -74,10 +67,8 @@ class NewsItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldThrowExceptionForDate()
+
+    public function testItShouldThrowExceptionForDate()
     {
         $this->setExpectedException($this->exception);
         $this->item = new NewsItem(
@@ -89,10 +80,8 @@ class NewsItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldThrowExceptionForPublicationName()
+
+    public function testItShouldThrowExceptionForPublicationName()
     {
         $this->setExpectedException($this->exception);
         $this->item = new NewsItem(
@@ -104,10 +93,8 @@ class NewsItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldThrowExceptionForLanguage()
+
+    public function testItShouldThrowExceptionForLanguage()
     {
         $this->setExpectedException($this->exception);
         $this->item = new NewsItem(
@@ -119,10 +106,8 @@ class NewsItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveAccess()
+
+    public function testItShouldHaveAccess()
     {
         $this->item->setAccess('Subscription');
         $this->assertContains(
@@ -137,19 +122,15 @@ class NewsItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveAccessAndThrowException()
+
+    public function testItShouldHaveAccessAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setAccess(null);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveKeywords()
+
+    public function testItShouldHaveKeywords()
     {
         $this->item->setKeywords('business, merger, acquisition, A, B');
         $this->assertContains(
@@ -158,19 +139,15 @@ class NewsItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveKeywordsAndThrowException()
+
+    public function testItShouldHaveKeywordsAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setKeywords(null);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveStockTickers()
+
+    public function testItShouldHaveStockTickers()
     {
         $this->item->setStockTickers('NASDAQ:A, NASDAQ:B');
         $this->assertContains(
@@ -179,19 +156,15 @@ class NewsItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveStockTickersAndThrowException()
+
+    public function testItShouldHaveStockTickersAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setStockTickers(null);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveGenres()
+
+    public function testItShouldHaveGenres()
     {
         $this->item->setGenres('PressRelease, Blog');
         $this->assertContains(
@@ -200,10 +173,8 @@ class NewsItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveGenresAndThrowException()
+
+    public function testItShouldHaveGenresAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setGenres(null);

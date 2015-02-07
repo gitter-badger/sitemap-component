@@ -1,11 +1,7 @@
 <?php
 
-namespace NilPortugues\Sitemap\Item\Video\Validator;
+namespace League\Sitemap\Item\Video\Validator;
 
-/**
- * Class PriceCurrencyValidator
- * @package NilPortugues\Sitemap\Item\Video\Validator
- */
 class PriceCurrencyValidator
 {
     /**

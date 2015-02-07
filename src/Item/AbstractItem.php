@@ -1,17 +1,7 @@
 <?php
-/*
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
 
-namespace NilPortugues\Sitemap\Item;
+namespace League\Sitemap\Item;
 
-/**
- * Class AbstractItem
- * @package NilPortugues\Sitemap\Items
- */
 abstract class AbstractItem implements ItemInterface
 {
     /**
@@ -46,7 +36,6 @@ abstract class AbstractItem implements ItemInterface
      * @param string $tag
      * @param mixed  $validationClass
      * @param string $validationMethod
-     * @param string $exceptionClass
      * @param string $exceptionMsg
      */
     protected static function writeFullTag(
@@ -56,10 +45,9 @@ abstract class AbstractItem implements ItemInterface
         $tag,
         $validationClass,
         $validationMethod,
-        $exceptionClass,
         $exceptionMsg
     ) {
-        $value = self::validateInput($value, $validationClass, $validationMethod, $exceptionClass, $exceptionMsg);
+        $value = self::validateInput($value, $validationClass, $validationMethod, $exceptionMsg);
         self::writeFullTagTemplate($value, $name, $cdata, $tag);
     }
 
@@ -84,7 +72,6 @@ abstract class AbstractItem implements ItemInterface
      * @param string $attributeName
      * @param mixed  $validationClass
      * @param string $validationMethod
-     * @param string $exceptionClass
      * @param string $exceptionMsg
      */
     protected static function writeAttribute(
@@ -93,11 +80,10 @@ abstract class AbstractItem implements ItemInterface
         $attributeName,
         $validationClass,
         $validationMethod,
-        $exceptionClass,
         $exceptionMsg
     ) {
         list() = func_get_args();
-        $value = self::validateInput($value, $validationClass, $validationMethod, $exceptionClass, $exceptionMsg);
+        $value = self::validateInput($value, $validationClass, $validationMethod, $exceptionMsg);
         self::$xml[$name] .= " {$attributeName}=\"{$value}\"";
     }
 
@@ -105,16 +91,16 @@ abstract class AbstractItem implements ItemInterface
      * @param mixed  $value
      * @param mixed  $validationClass
      * @param string $validationMethod
-     * @param string $exceptionClass
      * @param string $exceptionMsg
      *
      * @return mixed
+     * @throws \InvalidArgumentException
      */
-    protected static function validateInput($value, $validationClass, $validationMethod, $exceptionClass, $exceptionMsg)
+    protected static function validateInput($value, $validationClass, $validationMethod, $exceptionMsg)
     {
         $value = call_user_func_array([$validationClass, $validationMethod], [$value]);
         if (false === $value) {
-            throw new $exceptionClass($exceptionMsg);
+            throw new \InvalidArgumentException($exceptionMsg);
         }
 
         return $value;

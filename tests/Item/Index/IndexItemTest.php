@@ -1,19 +1,16 @@
 <?php
 
-namespace Tests\NilPortugues\Sitemap\Item\Index;
+namespace League\Sitemap\Tests\Item\Index;
 
-use NilPortugues\Sitemap\Item\Index\IndexItem;
+use League\Sitemap\Item\Index\IndexItem;
+use PHPUnit_Framework_TestCase;
 
-/**
- * Class IndexItemTest
- * @package Tests\NilPortugues\Sitemap\Item\Index
- */
-class IndexItemTest extends \PHPUnit_Framework_TestCase
+class IndexItemTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var string
      */
-    protected $exception = '\NilPortugues\Sitemap\Item\Index\IndexItemException';
+    protected $exception = '\InvalidArgumentException';
 
     /**
      * @var string
@@ -30,47 +27,37 @@ class IndexItemTest extends \PHPUnit_Framework_TestCase
      */
     protected $item;
 
-    /**
-     * @test
-     */
-    public function itShouldThrowExceptionOnChangeFreq()
+
+    public function testItShouldThrowExceptionOnChangeFreq()
     {
         $this->setExpectedException($this->exception);
         $this->item->setChangeFreq('always');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldThrowExceptionOnPriority()
+
+    public function testItShouldThrowExceptionOnPriority()
     {
         $this->setExpectedException($this->exception);
         $this->item->setPriority(0.1);
     }
 
 
-    /**
-     * @test
-     */
-    public function itShouldOutputLastMod()
+
+    public function testItShouldOutputLastMod()
     {
         $this->item->setLastMod($this->lastmod);
         $this->assertContains('<lastmod>' . $this->lastmod . '</lastmod>', $this->item->build());
     }
 
-    /**
-     * @test
-     */
-    public function itShouldOutputLastModAndThrowException()
+
+    public function testItShouldOutputLastModAndThrowException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setLastMod('a');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldOutputLocAndThrowException()
+
+    public function testItShouldOutputLocAndThrowException()
     {
         $this->setExpectedException($this->exception);
         new IndexItem('aaaa');

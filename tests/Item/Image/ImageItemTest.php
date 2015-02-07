@@ -1,14 +1,11 @@
 <?php
 
-namespace Tests\NilPortugues\Sitemap\Item\Image;
+namespace League\Sitemap\Tests\Item\Image;
 
-use NilPortugues\Sitemap\Item\Image\ImageItem;
+use League\Sitemap\Item\Image\ImageItem;
+use PHPUnit_Framework_TestCase;
 
-/**
- * Class ImageItemTest
- * @package Tests\NilPortugues\Sitemap\Item\Image
- */
-class ImageItemTest extends \PHPUnit_Framework_TestCase
+class ImageItemTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var ImageItem
@@ -23,7 +20,7 @@ class ImageItemTest extends \PHPUnit_Framework_TestCase
     /**
      * @var string
      */
-    protected $exception = 'NilPortugues\Sitemap\Item\Image\ImageItemException';
+    protected $exception = '\InvalidArgumentException';
 
     /**
      *
@@ -33,10 +30,8 @@ class ImageItemTest extends \PHPUnit_Framework_TestCase
         $this->item = new ImageItem($this->loc);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveLoc()
+
+    public function testItShouldHaveLoc()
     {
         $this->item->setTitle('Example.com 1 logo');
 
@@ -46,10 +41,8 @@ class ImageItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveTitle()
+
+    public function testItShouldHaveTitle()
     {
         $this->item->setTitle('Example.com 1 logo');
 
@@ -59,10 +52,8 @@ class ImageItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveGeolocation()
+
+    public function testItShouldHaveGeolocation()
     {
         $this->item->setGeoLocation('Limerick, Ireland');
         $this->assertContains(
@@ -71,10 +62,8 @@ class ImageItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveLicense()
+
+    public function testItShouldHaveLicense()
     {
         $this->item->setLicense('MIT');
 
@@ -84,10 +73,8 @@ class ImageItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveCaption()
+
+    public function testItShouldHaveCaption()
     {
         $this->item->setCaption('This place is called Limerick, Ireland');
 
@@ -97,19 +84,15 @@ class ImageItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldOutputLocAndThrowException()
+
+    public function testItShouldOutputLocAndThrowException()
     {
         $this->setExpectedException($this->exception);
         new ImageItem('aaaa');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldValidateGeolocationInvalidInput()
+
+    public function testItShouldValidateGeolocationInvalidInput()
     {
         $this->setExpectedException($this->exception);
         $geolocation = new \StdClass();
@@ -117,10 +100,8 @@ class ImageItemTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($result);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldValidateLicense()
+
+    public function testItShouldValidateLicense()
     {
         $this->setExpectedException($this->exception);
         $license = new \StdClass();
@@ -128,10 +109,8 @@ class ImageItemTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($result);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldValidateCaptionInvalidInput()
+
+    public function testItShouldValidateCaptionInvalidInput()
     {
         $this->setExpectedException($this->exception);
         $caption = new \StdClass();
@@ -139,10 +118,8 @@ class ImageItemTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($result);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldValidateTitleInvalidInput()
+
+    public function testItShouldValidateTitleInvalidInput()
     {
         $this->setExpectedException($this->exception);
         $title  = new \StdClass();

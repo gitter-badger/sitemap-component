@@ -1,22 +1,10 @@
 <?php
-/**
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- * Date: 12/21/14
- * Time: 8:27 PM
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+namespace League\Sitemap\Tests;
 
-namespace Tests\NilPortugues\Sitemap;
+use League\Sitemap\SubmitSitemap;
+use PHPUnit_Framework_TestCase;
 
-use NilPortugues\Sitemap\SubmitSitemap;
-
-/**
- * Class SubmitSitemapTest
- * @package Tests\NilPortugues\Sitemap
- */
-class SubmitSitemapTest extends \PHPUnit_Framework_TestCase
+class SubmitSitemapTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var string
@@ -26,12 +14,10 @@ class SubmitSitemapTest extends \PHPUnit_Framework_TestCase
     /**
      * @var string
      */
-    protected $exception = 'NilPortugues\Sitemap\SitemapException';
+    protected $exception = '\InvalidArgumentException';
 
-    /**
-     * @test
-     */
-    public function itShouldSubmitValidSitemapUrl()
+
+    public function testItShouldSubmitValidSitemapUrl()
     {
         $result = SubmitSitemap::send($this->url);
         $expected = ['google' => true, 'bing' => true];
@@ -40,10 +26,8 @@ class SubmitSitemapTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $result);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldSubmitValidSitemapNonValidUrl()
+
+    public function testItShouldSubmitValidSitemapNonValidUrl()
     {
         $this->setExpectedException($this->exception);
         SubmitSitemap::send('not a valid url');

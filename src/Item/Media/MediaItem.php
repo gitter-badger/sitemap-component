@@ -1,30 +1,15 @@
 <?php
-/*
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
 
-namespace NilPortugues\Sitemap\Item\Media;
+namespace League\Sitemap\Item\Media;
 
-use NilPortugues\Sitemap\Item\AbstractItem;
+use League\Sitemap\Item\AbstractItem;
 
-/**
- * Class MediaItem
- * @package NilPortugues\Sitemap\Items
- */
 class MediaItem extends AbstractItem
 {
     /**
      * @var MediaItemValidator
      */
     protected $validator;
-
-    /**
-     * @var string
-     */
-    protected $exception = 'NilPortugues\Sitemap\Item\Media\MediaItemException';
 
     /**
      *
@@ -60,7 +45,7 @@ class MediaItem extends AbstractItem
     /**
      * @param $link
      *
-     * @throws MediaItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     protected function setLink($link)
@@ -72,7 +57,6 @@ class MediaItem extends AbstractItem
             'link',
             $this->validator,
             'validateLink',
-            $this->exception,
             'Provided link is not a valid value.'
         );
 
@@ -99,7 +83,7 @@ class MediaItem extends AbstractItem
     /**
      * @param $mimeType
      *
-     * @throws MediaItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      */
     protected function setContentMimeType($mimeType)
     {
@@ -109,7 +93,6 @@ class MediaItem extends AbstractItem
             'type',
             $this->validator,
             'validateMimeType',
-            $this->exception,
             'Provided mime-type is not a valid value.'
         );
     }
@@ -117,7 +100,7 @@ class MediaItem extends AbstractItem
     /**
      * @param $duration
      *
-     * @throws MediaItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      */
     protected function setContentDuration($duration)
     {
@@ -128,7 +111,6 @@ class MediaItem extends AbstractItem
                 'duration',
                 $this->validator,
                 'validateDuration',
-                $this->exception,
                 'Provided duration is not a valid value.'
             );
         }
@@ -137,7 +119,7 @@ class MediaItem extends AbstractItem
     /**
      * @param $player
      *
-     * @throws MediaItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setPlayer($player)
@@ -150,7 +132,6 @@ class MediaItem extends AbstractItem
             'url',
             $this->validator,
             'validatePlayer',
-            $this->exception,
             'Provided player URL is not a valid value.'
         );
 
@@ -162,7 +143,7 @@ class MediaItem extends AbstractItem
     /**
      * @param $title
      *
-     * @throws MediaItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setTitle($title)
@@ -174,7 +155,6 @@ class MediaItem extends AbstractItem
             'media:title',
             $this->validator,
             'validateTitle',
-            $this->exception,
             'Provided title is not a valid value.'
         );
 
@@ -184,7 +164,7 @@ class MediaItem extends AbstractItem
     /**
      * @param $description
      *
-     * @throws MediaItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setDescription($description)
@@ -196,7 +176,6 @@ class MediaItem extends AbstractItem
             'media:description',
             $this->validator,
             'validateDescription',
-            $this->exception,
             'Provided description is not a valid value.'
         );
 
@@ -231,7 +210,7 @@ class MediaItem extends AbstractItem
     /**
      * @param $url
      *
-     * @throws MediaItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     protected function setThumbnailUrl($url)
@@ -242,7 +221,6 @@ class MediaItem extends AbstractItem
             'url',
             $this->validator,
             'validateThumbnail',
-            $this->exception,
             'Provided thumbnail URL is not a valid value.'
         );
 
@@ -252,7 +230,7 @@ class MediaItem extends AbstractItem
     /**
      * @param $height
      *
-     * @throws MediaItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     protected function setThumbnailHeight($height)
@@ -263,7 +241,6 @@ class MediaItem extends AbstractItem
             'height',
             $this->validator,
             'validateHeight',
-            $this->exception,
             'Provided height is not a valid value.'
         );
 
@@ -273,7 +250,7 @@ class MediaItem extends AbstractItem
     /**
      * @param $width
      *
-     * @throws MediaItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     protected function setThumbnailWidth($width)
@@ -284,7 +261,6 @@ class MediaItem extends AbstractItem
             'width',
             $this->validator,
             'validateWidth',
-            $this->exception,
             'Provided width is not a valid value.'
         );
 

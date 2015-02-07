@@ -1,33 +1,20 @@
 <?php
-/**
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- * Date: 12/20/14
- * Time: 7:44 PM
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+namespace League\Sitemap;
 
-namespace NilPortugues\Sitemap;
+use League\Sitemap\Item\Index\IndexItem;
 
-use NilPortugues\Sitemap\Item\Index\IndexItem;
-
-/**
- * Class IndexSitemap
- * @package NilPortugues\Sitemap
- */
 class IndexSitemap extends Sitemap
 {
     /**
      * @param IndexItem $item
      *
-     * @throws SitemapException
+     * @throws \InvalidArgumentException
      */
     protected function validateItemClassType($item)
     {
         if (!($item instanceof IndexItem)) {
-            throw new SitemapException(
-                "Provided \$item is not instance of \\NilPortugues\\Sitemap\\Item\\Index\\IndexItem."
+            throw new \InvalidArgumentException(
+                "Provided \$item is not instance of \\League\\Sitemap\\Item\\Index\\IndexItem."
             );
         }
     }

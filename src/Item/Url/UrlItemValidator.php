@@ -1,23 +1,10 @@
 <?php
-/**
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- * Date: 12/10/14
- * Time: 1:59 AM
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
+namespace League\Sitemap\Item\Url;
 
-namespace NilPortugues\Sitemap\Item\Url;
+use League\Sitemap\Item\Url\Validator\ChangeFreqValidator;
+use League\Sitemap\Item\Url\Validator\PriorityValidator;
+use League\Sitemap\Item\ValidatorTrait;
 
-use NilPortugues\Sitemap\Item\Url\Validator\ChangeFreqValidator;
-use NilPortugues\Sitemap\Item\Url\Validator\PriorityValidator;
-use NilPortugues\Sitemap\Item\ValidatorTrait;
-
-/**
- * Class UrlItemValidator
- * @package NilPortugues\Sitemap\Items
- */
 class UrlItemValidator
 {
     use ValidatorTrait;

@@ -1,11 +1,7 @@
 <?php
 
-namespace NilPortugues\Sitemap\Item;
+namespace League\Sitemap\Item;
 
-/**
- * Trait Singleton
- * @package NilPortugues\Sitemap\Item
- */
 trait SingletonTrait
 {
     protected static $instance;

@@ -1,29 +1,14 @@
 <?php
-/*
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-namespace NilPortugues\Sitemap\Item\Image;
+namespace League\Sitemap\Item\Image;
 
-use NilPortugues\Sitemap\Item\AbstractItem;
+use League\Sitemap\Item\AbstractItem;
 
-/**
- * Class ImageItem
- * @package NilPortugues\Sitemap\Item\Image
- */
 class ImageItem extends AbstractItem
 {
     /**
      * @var ImageItemValidator
      */
     protected $validator;
-
-    /**
-     * @var string
-     */
-    protected $exception = 'NilPortugues\Sitemap\Item\Image\ImageItemException';
 
     /**
      * @param $loc
@@ -56,7 +41,7 @@ class ImageItem extends AbstractItem
     /**
      * @param $loc
      *
-     * @throws ImageItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     protected function setLoc($loc)
@@ -68,7 +53,6 @@ class ImageItem extends AbstractItem
             'image:loc',
             $this->validator,
             'validateLoc',
-            $this->exception,
             'Provided URL is not a valid value.'
         );
 
@@ -80,7 +64,7 @@ class ImageItem extends AbstractItem
      * @param $title
      *
      * @return $this
-     * @throws ImageItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      */
     public function setTitle($title)
     {
@@ -91,7 +75,6 @@ class ImageItem extends AbstractItem
             'image:title',
             $this->validator,
             'validateTitle',
-            $this->exception,
             'Provided title is not a valid value.'
         );
 
@@ -101,7 +84,7 @@ class ImageItem extends AbstractItem
     /**
      * @param $caption
      *
-     * @throws ImageItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setCaption($caption)
@@ -113,7 +96,6 @@ class ImageItem extends AbstractItem
             'image:caption',
             $this->validator,
             'validateCaption',
-            $this->exception,
             'Provided caption is not a valid value.'
         );
 
@@ -123,7 +105,7 @@ class ImageItem extends AbstractItem
     /**
      * @param $geoLocation
      *
-     * @throws ImageItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setGeoLocation($geoLocation)
@@ -135,7 +117,6 @@ class ImageItem extends AbstractItem
             'image:geolocation',
             $this->validator,
             'validateGeoLocation',
-            $this->exception,
             'Provided geolocation is not a valid value.'
         );
 
@@ -145,7 +126,7 @@ class ImageItem extends AbstractItem
     /**
      * @param $license
      *
-     * @throws ImageItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setLicense($license)
@@ -157,7 +138,6 @@ class ImageItem extends AbstractItem
             'image:license',
             $this->validator,
             'validateLicense',
-            $this->exception,
             'Provided license is not a valid value.'
         );
 

@@ -1,29 +1,14 @@
 <?php
-/*
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-namespace NilPortugues\Sitemap\Item\Url;
+namespace League\Sitemap\Item\Url;
 
-use NilPortugues\Sitemap\Item\AbstractItem;
+use League\Sitemap\Item\AbstractItem;
 
-/**
- * Class UrlItem
- * @package NilPortugues\Sitemap\Items
- */
 class UrlItem extends AbstractItem
 {
     /**
      * @var UrlItemValidator
      */
     private $validator;
-
-    /**
-     * @var string
-     */
-    private $exception = '\NilPortugues\Sitemap\Item\Url\UrlItemException';
 
     /**
      * @param $loc
@@ -55,7 +40,7 @@ class UrlItem extends AbstractItem
     /**
      * @param $loc
      *
-     * @throws UrlItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     protected function setLoc($loc)
@@ -67,7 +52,6 @@ class UrlItem extends AbstractItem
             'loc',
             $this->validator,
             'validateLoc',
-            $this->exception,
             'Provided URL is not a valid value.'
         );
 
@@ -77,7 +61,7 @@ class UrlItem extends AbstractItem
     /**
      * @param $lastmod
      *
-     * @throws UrlItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setLastMod($lastmod)
@@ -89,7 +73,6 @@ class UrlItem extends AbstractItem
             'lastmod',
             $this->validator,
             'validateLastmod',
-            $this->exception,
             'Provided modification date is not a valid value.'
         );
 
@@ -99,7 +82,7 @@ class UrlItem extends AbstractItem
     /**
      * @param $changeFreq
      *
-     * @throws UrlItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setChangeFreq($changeFreq)
@@ -111,7 +94,6 @@ class UrlItem extends AbstractItem
             'changefreq',
             $this->validator,
             'validateChangeFreq',
-            $this->exception,
             'Provided change frequency is not a valid value.'
         );
 
@@ -121,7 +103,7 @@ class UrlItem extends AbstractItem
     /**
      * @param $priority
      *
-     * @throws UrlItemException
+     * @throws \League\Sitemap\Item\\InvalidArgumentException
      * @return $this
      */
     public function setPriority($priority)
@@ -133,7 +115,6 @@ class UrlItem extends AbstractItem
             'priority',
             $this->validator,
             'validatePriority',
-            $this->exception,
             'Provided priority is not a valid value.'
         );
 

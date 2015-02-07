@@ -1,14 +1,11 @@
 <?php
 
-namespace Tests\NilPortugues\Sitemap\Item\Media;
+namespace League\Sitemap\Tests\Item\Media;
 
-use NilPortugues\Sitemap\Item\Media\MediaItem;
+use League\Sitemap\Item\Media\MediaItem;
+use PHPUnit_Framework_TestCase;
 
-/**
- * Class MediaItemTest
- * @package Tests\NilPortugues\Sitemap\Item\Media
- */
-class MediaItemTest extends \PHPUnit_Framework_TestCase
+class MediaItemTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var string
@@ -23,7 +20,7 @@ class MediaItemTest extends \PHPUnit_Framework_TestCase
     /**
      * @var string
      */
-    protected $exception = 'NilPortugues\Sitemap\Item\Media\MediaItemException';
+    protected $exception = '\InvalidArgumentException';
 
     /**
      *
@@ -34,19 +31,15 @@ class MediaItemTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    /**
-     * @test
-     */
-    public function itShouldThrowException()
+
+    public function testItShouldThrowException()
     {
         $this->setExpectedException($this->exception);
         new MediaItem('aaaa');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveContent()
+
+    public function testItShouldHaveContent()
     {
         $this->item->setContent('video/x-flv');
 
@@ -56,19 +49,15 @@ class MediaItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveContentThrowsException()
+
+    public function testItShouldHaveContentThrowsException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setContent(null);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveContentAndDuration()
+
+    public function testItShouldHaveContentAndDuration()
     {
         $this->item->setContent('video/x-flv', 120);
 
@@ -78,19 +67,15 @@ class MediaItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveContentAndDurationThrowsException()
+
+    public function testItShouldHaveContentAndDurationThrowsException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setContent('video/x-flv', -1);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHavePlayer()
+
+    public function testItShouldHavePlayer()
     {
         $this->item->setPlayer('http://www.example.com/shows/example/video.swf?flash_params');
 
@@ -100,19 +85,15 @@ class MediaItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHavePlayerAndThrowsException()
+
+    public function testItShouldHavePlayerAndThrowsException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setPlayer('aaaaa');
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveTitle()
+
+    public function testItShouldHaveTitle()
     {
         $this->item->setTitle('Barbacoas en verano');
 
@@ -122,19 +103,15 @@ class MediaItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveTitleAndThrowsException()
+
+    public function testItShouldHaveTitleAndThrowsException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setTitle(null);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveDescription()
+
+    public function testItShouldHaveDescription()
     {
         $this->item->setDescription('Consigue que los filetes queden perfectamente hechos siempre');
 
@@ -144,19 +121,15 @@ class MediaItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveDescriptionAndThrowsException()
+
+    public function testItShouldHaveDescriptionAndThrowsException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setDescription(null);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveThumbnailWithUrl()
+
+    public function testItShouldHaveThumbnailWithUrl()
     {
         $this->item->setThumbnail('http://www.example.com/examples/mrss/example.png');
 
@@ -166,19 +139,15 @@ class MediaItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveThumbnailWithUrlAndThrowsException()
+
+    public function testItShouldHaveThumbnailWithUrlAndThrowsException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setThumbnail(null);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveThumbnailWithUrlAndHeight()
+
+    public function testItShouldHaveThumbnailWithUrlAndHeight()
     {
         $this->item->setThumbnail('http://www.example.com/examples/mrss/example.png', 120);
 
@@ -188,19 +157,15 @@ class MediaItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveThumbnailWithUrlAndHeightThrowsException()
+
+    public function testItShouldHaveThumbnailWithUrlAndHeightThrowsException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setThumbnail('http://www.example.com/examples/mrss/example.png', -120);
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveThumbnailWithUrlAndWidth()
+
+    public function testItShouldHaveThumbnailWithUrlAndWidth()
     {
         $this->item->setThumbnail('http://www.example.com/examples/mrss/example.png', 120, 120);
 
@@ -210,10 +175,8 @@ class MediaItemTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function itShouldHaveThumbnailWithUrlAndWidthThrowsException()
+
+    public function testItShouldHaveThumbnailWithUrlAndWidthThrowsException()
     {
         $this->setExpectedException($this->exception);
         $this->item->setThumbnail('http://www.example.com/examples/mrss/example.png', 120, -120);

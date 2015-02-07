@@ -1,25 +1,12 @@
 <?php
-/**
- * Author: Nil Portugués Calderó <contact@nilportugues.com>
- * Date: 12/20/14
- * Time: 7:44 PM
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
 
-namespace NilPortugues\Sitemap;
+namespace League\Sitemap;
 
-use NilPortugues\Sitemap\Item\Media\MediaItem;
-use NilPortugues\Sitemap\Item\ValidatorTrait;
+use League\Sitemap\Item\Media\MediaItem;
+use League\Sitemap\Item\ValidatorTrait;
 
-/**
- * Class MediaSitemap
- * @package NilPortugues\Sitemap
- */
 class MediaSitemap extends Sitemap
 {
-
     /**
      * @var string
      */
@@ -53,12 +40,12 @@ class MediaSitemap extends Sitemap
      * @param string $string
      *
      * @return string
-     * @throws SitemapException
+     * @throws \InvalidArgumentException
      */
     protected function setStringValue($tag, $string)
     {
         if (false === ValidatorTrait::validateString($string)) {
-            throw new SitemapException(sprintf('Value for %s is not valid', $tag));
+            throw new \InvalidArgumentException(sprintf('Value for %s is not valid', $tag));
         }
 
         return "<$tag>{$string}</$tag>";
@@ -68,12 +55,12 @@ class MediaSitemap extends Sitemap
      * @param string $link
      *
      * @return $this
-     * @throws SitemapException
+     * @throws \InvalidArgumentException
      */
     public function setLink($link)
     {
         if (false === ValidatorTrait::validateLoc($link)) {
-            throw new SitemapException('Value for setLink is not a valid URL');
+            throw new \InvalidArgumentException('Value for setLink is not a valid URL');
         }
 
         $this->link = "<link>{$link}</link>";
@@ -97,13 +84,13 @@ class MediaSitemap extends Sitemap
     /**
      * @param MediaItem $item
      *
-     * @throws SitemapException
+     * @throws \InvalidArgumentException
      */
     protected function validateItemClassType($item)
     {
         if (!($item instanceof MediaItem)) {
-            throw new SitemapException(
-                "Provided \$item is not instance of \\NilPortugues\\Sitemap\\Item\\Media\\MediaItem."
+            throw new \InvalidArgumentException(
+                "Provided \$item is not instance of \\League\\Sitemap\\Item\\Media\\MediaItem."
             );
         }
     }
