@@ -93,7 +93,7 @@ This component also provides a method to submit the generated sitemaps to the fo
 ### 4.1 - Submit to search engines
 ```php
 <?php
-use NilPortugues\Sitemap\SubmitSitemap;
+use League\Sitemap\SubmitSitemap;
 
 // $status = ['google' => true, 'bing' => true]; if everything went OK.
 $status = SubmitSitemap::send('http://example.com/sitemap-index.xml');
@@ -107,9 +107,9 @@ In order to use a Sitemap Index, you need to build sitemap files first. Check ou
 <a name="block4.2.1"></a>
 #### Creation
 ```php
-use NilPortugues\Sitemap\IndexSitemap;
-use NilPortugues\Sitemap\Item\Index\IndexItem;
-use NilPortugues\Sitemap\SitemapException;
+use League\Sitemap\IndexSitemap;
+use League\Sitemap\Item\Index\IndexItem;
+use League\Sitemap\SitemapException;
 
 try {
     $sitemap = new IndexSitemap('path/to/folder','sitemap.index.xml');
@@ -152,9 +152,9 @@ try {
 <a name="block4.3.1"></a>
 #### Creation
 ```php
-use NilPortugues\Sitemap\Sitemap;
-use NilPortugues\Sitemap\Item\Url\UrlItem;
-use NilPortugues\Sitemap\SitemapException;
+use League\Sitemap\Sitemap;
+use League\Sitemap\Item\Url\UrlItem;
+use League\Sitemap\SitemapException;
 
 try {
     $sitemap = new Sitemap('path/to/folder','sitemap.index.xml');
@@ -216,9 +216,9 @@ try {
 <a name="block4.4.1"></a>
 #### Creation
 ```php
-use NilPortugues\Sitemap\ImageSitemap;
-use NilPortugues\Sitemap\Item\Image\ImageItem;
-use NilPortugues\Sitemap\SitemapException;
+use League\Sitemap\ImageSitemap;
+use League\Sitemap\Item\Image\ImageItem;
+use League\Sitemap\SitemapException;
 
 try {
     $sitemap = new ImageSitemap('path/to/folder','sitemap.image.xml');
@@ -263,9 +263,9 @@ xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 <a name="block4.5.1"></a>
 #### Creation
 ```php
-use NilPortugues\Sitemap\VideoSitemap;
-use NilPortugues\Sitemap\Item\Video\VideoItem;
-use NilPortugues\Sitemap\SitemapException;
+use League\Sitemap\VideoSitemap;
+use League\Sitemap\Item\Video\VideoItem;
+use League\Sitemap\SitemapException;
 
 try {
     $sitemap = new VideoSitemap('path/to/folder','sitemap.video.xml');
@@ -343,9 +343,9 @@ try {
 <a name="block4.6.1"></a>
 #### Creation
 ```php
-use NilPortugues\Sitemap\MediaSitemap;
-use NilPortugues\Sitemap\Item\Media\MediaItem;
-use NilPortugues\Sitemap\SitemapException;
+use League\Sitemap\MediaSitemap;
+use League\Sitemap\Item\Media\MediaItem;
+use League\Sitemap\SitemapException;
 
 try {
     $sitemap = new MediaSitemap('path/to/folder','sitemap.media.xml');
@@ -416,9 +416,9 @@ try {
 <a name="block4.7.1"></a>
 #### Creation
 ```php
-use NilPortugues\Sitemap\NewsSitemap;
-use NilPortugues\Sitemap\Item\News\NewsItem;
-use NilPortugues\Sitemap\SitemapException;
+use League\Sitemap\NewsSitemap;
+use League\Sitemap\Item\News\NewsItem;
+use League\Sitemap\SitemapException;
 
 try {
     $sitemap = new NewsSitemap('path/to/folder','sitemap.news.xml');
