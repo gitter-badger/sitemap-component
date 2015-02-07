@@ -5,6 +5,8 @@ use League\Sitemap\Item\ValidatorTrait;
 
 abstract class AbstractSitemap implements SitemapInterface
 {
+    use ValidatorTrait;
+
     /**
      * Variable holding the items added to a file.
      *
@@ -256,13 +258,16 @@ abstract class AbstractSitemap implements SitemapInterface
      * @param        $item
      * @param string $url
      *
+     * @throws \InvalidArgumentException
      * @return $this
      */
     protected function delayedAdd($item, $url = '')
     {
         $this->validateItemClassType($item);
-        $this->validateLoc($url);
 
+        if (false === $this->validateLoc($url)) {
+            throw new \InvalidArgumentException(sprintf('Provided url is not valid.'));
+        }
 
         $this->items[$url][] = $item->build();
 
@@ -276,19 +281,6 @@ abstract class AbstractSitemap implements SitemapInterface
      */
     abstract protected function validateItemClassType($item);
 
-    /**
-     * @param string $url
-     *
-     * @throws \InvalidArgumentException
-     */
-    protected function validateLoc($url)
-    {
-        if (false === ValidatorTrait::validateLoc($url)) {
-            throw new \InvalidArgumentException(
-                sprintf('Provided url is not valid.')
-            );
-        }
-    }
 
     /**
      *

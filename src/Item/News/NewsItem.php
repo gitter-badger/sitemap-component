@@ -19,8 +19,8 @@ class NewsItem extends AbstractItem
      */
     public function __construct($loc, $title, $publicationDate, $name, $language)
     {
-        $this->validator = NewsItemValidator::getInstance();
-        self::$xml       = $this->reset();
+        $this->validator = new NewsItemValidator();
+        $this->xml       = $this->reset();
         $this->setLoc($loc);
         $this->setTitle($title);
         $this->setPublicationDate($publicationDate);
@@ -53,18 +53,18 @@ class NewsItem extends AbstractItem
     /**
      * @param $loc
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     protected function setLoc($loc)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $loc,
             'loc',
             false,
             'loc',
             $this->validator,
-            'validateLoc',
+            'validateUrl',
             'Provided URL is not a valid value.'
         );
 
@@ -74,12 +74,12 @@ class NewsItem extends AbstractItem
     /**
      * @param $title
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     protected function setTitle($title)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $title,
             'title',
             false,
@@ -95,12 +95,12 @@ class NewsItem extends AbstractItem
     /**
      * @param $date
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     protected function setPublicationDate($date)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $date,
             'publication_date',
             false,
@@ -121,10 +121,10 @@ class NewsItem extends AbstractItem
      */
     protected function setPublication($name, $language)
     {
-        self::$xml['name'] = '<news:publication>';
+        $this->xml['name'] = '<news:publication>';
         $this->setPublicationName($name);
         $this->setPublicationLanguage($language);
-        self::$xml['name'] .= '</news:publication>';
+        $this->xml['name'] .= '</news:publication>';
 
         return $this;
     }
@@ -132,12 +132,12 @@ class NewsItem extends AbstractItem
     /**
      * @param $name
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     protected function setPublicationName($name)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $name,
             'name',
             false,
@@ -153,12 +153,12 @@ class NewsItem extends AbstractItem
     /**
      * @param $language
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     protected function setPublicationLanguage($language)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $language,
             'name',
             false,
@@ -175,12 +175,12 @@ class NewsItem extends AbstractItem
     /**
      * @param $access
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setAccess($access)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $access,
             'access',
             false,
@@ -197,11 +197,11 @@ class NewsItem extends AbstractItem
      * @param $genres
      *
      * @return $this
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function setGenres($genres)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $genres,
             'genres',
             false,
@@ -218,11 +218,11 @@ class NewsItem extends AbstractItem
      * @param $keywords
      *
      * @return $this
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function setKeywords($keywords)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $keywords,
             'keywords',
             false,
@@ -238,12 +238,12 @@ class NewsItem extends AbstractItem
     /**
      * @param $stockTickers
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setStockTickers($stockTickers)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $stockTickers,
             'stock_tickers',
             false,

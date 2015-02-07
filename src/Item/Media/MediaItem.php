@@ -16,8 +16,8 @@ class MediaItem extends AbstractItem
      */
     public function __construct($link)
     {
-        $this->validator = MediaItemValidator::getInstance();
-        self::$xml       = $this->reset();
+        $this->validator = new MediaItemValidator();
+        $this->xml       = $this->reset();
         $this->setLink($link);
     }
 
@@ -45,12 +45,12 @@ class MediaItem extends AbstractItem
     /**
      * @param $link
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     protected function setLink($link)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $link,
             'link',
             false,
@@ -72,10 +72,10 @@ class MediaItem extends AbstractItem
      */
     public function setContent($mimeType, $duration = null)
     {
-        self::$xml['content'] = "<media:content";
+        $this->xml['content'] = "<media:content";
         $this->setContentMimeType($mimeType);
         $this->setContentDuration($duration);
-        self::$xml['content'] .= ">";
+        $this->xml['content'] .= ">";
 
         return $this;
     }
@@ -83,7 +83,7 @@ class MediaItem extends AbstractItem
     /**
      * @param $mimeType
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     protected function setContentMimeType($mimeType)
     {
@@ -100,7 +100,7 @@ class MediaItem extends AbstractItem
     /**
      * @param $duration
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     protected function setContentDuration($duration)
     {
@@ -119,12 +119,12 @@ class MediaItem extends AbstractItem
     /**
      * @param $player
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setPlayer($player)
     {
-        self::$xml['player'] = "<media:player";
+        $this->xml['player'] = "<media:player";
 
         $this->writeAttribute(
             $player,
@@ -135,7 +135,7 @@ class MediaItem extends AbstractItem
             'Provided player URL is not a valid value.'
         );
 
-        self::$xml['player'] .= " />";
+        $this->xml['player'] .= " />";
 
         return $this;
     }
@@ -143,12 +143,12 @@ class MediaItem extends AbstractItem
     /**
      * @param $title
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setTitle($title)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $title,
             'title',
             false,
@@ -164,12 +164,12 @@ class MediaItem extends AbstractItem
     /**
      * @param $description
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setDescription($description)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $description,
             'description',
             false,
@@ -191,7 +191,7 @@ class MediaItem extends AbstractItem
      */
     public function setThumbnail($thumbnail, $height = null, $weight = null)
     {
-        self::$xml['thumbnail'] = "<media:thumbnail";
+        $this->xml['thumbnail'] = "<media:thumbnail";
         $this->setThumbnailUrl($thumbnail);
 
         if (null !== $height) {
@@ -202,7 +202,7 @@ class MediaItem extends AbstractItem
             $this->setThumbnailWidth($weight);
         }
 
-        self::$xml['thumbnail'] .= "/>";
+        $this->xml['thumbnail'] .= "/>";
 
         return $this;
     }
@@ -210,7 +210,7 @@ class MediaItem extends AbstractItem
     /**
      * @param $url
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     protected function setThumbnailUrl($url)
@@ -230,7 +230,7 @@ class MediaItem extends AbstractItem
     /**
      * @param $height
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     protected function setThumbnailHeight($height)
@@ -250,7 +250,7 @@ class MediaItem extends AbstractItem
     /**
      * @param $width
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     protected function setThumbnailWidth($width)

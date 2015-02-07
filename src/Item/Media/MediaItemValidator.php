@@ -14,7 +14,7 @@ class MediaItemValidator
      */
     public function validateTitle($title)
     {
-        return self::validateString($title);
+        return $this->validateString($title);
     }
 
     /**
@@ -24,7 +24,7 @@ class MediaItemValidator
      */
     public function validateMimeType($mimeType)
     {
-        return self::validateString($mimeType);
+        return $this->validateString($mimeType);
     }
 
     /**
@@ -34,7 +34,7 @@ class MediaItemValidator
      */
     public function validateLink($link)
     {
-        return self::validateLoc($link);
+        return $this->validateLoc($link);
     }
 
     /**
@@ -44,7 +44,7 @@ class MediaItemValidator
      */
     public function validatePlayer($player)
     {
-        return self::validateLoc($player);
+        return $this->validateLoc($player);
     }
 
     /**
@@ -54,7 +54,7 @@ class MediaItemValidator
      */
     public function validateDuration($duration)
     {
-        return self::validateInteger($duration);
+        return $this->validateInteger($duration);
     }
 
     /**
@@ -64,7 +64,7 @@ class MediaItemValidator
      */
     public function validateDescription($description)
     {
-        return self::validateString($description);
+        return $this->validateString($description);
     }
 
     /**
@@ -74,7 +74,7 @@ class MediaItemValidator
      */
     public function validateThumbnail($thumbnail)
     {
-        return self::validateLoc($thumbnail);
+        return $this->validateLoc($thumbnail);
     }
 
     /**
@@ -84,7 +84,7 @@ class MediaItemValidator
      */
     public function validateHeight($height)
     {
-        return self::validateInteger($height);
+        return $this->validateInteger($height);
     }
 
     /**
@@ -94,6 +94,6 @@ class MediaItemValidator
      */
     public function validateWidth($width)
     {
-        return self::validateInteger($width);
+        return $this->validateInteger($width);
     }
 }

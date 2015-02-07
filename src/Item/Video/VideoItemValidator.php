@@ -37,7 +37,7 @@ class VideoItemValidator
      */
     public function validateAutoPlay($string)
     {
-        return self::validateString($string);
+        return $this->validateString($string);
     }
 
     /**
@@ -47,7 +47,7 @@ class VideoItemValidator
      */
     public function validateThumbnailLoc($loc)
     {
-        return self::validateLoc($loc);
+        return $this->validateLoc($loc);
     }
 
     /**
@@ -57,7 +57,7 @@ class VideoItemValidator
      */
     public function validateTitle($title)
     {
-        return self::validateString($title) && strlen($title) < 97;
+        return $this->validateString($title) && strlen($title) < 97;
     }
 
     /**
@@ -80,7 +80,7 @@ class VideoItemValidator
      */
     public function validateContentLoc($contentLoc)
     {
-        return self::validateLoc($contentLoc);
+        return $this->validateLoc($contentLoc);
     }
 
     /**
@@ -90,7 +90,7 @@ class VideoItemValidator
      */
     public function validatePlayerLoc($playerLoc)
     {
-        return self::validateLoc($playerLoc);
+        return $this->validateLoc($playerLoc);
     }
 
     /**
@@ -112,7 +112,7 @@ class VideoItemValidator
      */
     public function validateExpirationDate($expirationDate)
     {
-        return self::validateDate($expirationDate);
+        return $this->validateDate($expirationDate);
     }
 
     /**
@@ -134,7 +134,7 @@ class VideoItemValidator
      */
     public function validateViewCount($viewCount)
     {
-        return self::validateInteger($viewCount);
+        return $this->validateInteger($viewCount);
     }
 
     /**
@@ -144,7 +144,7 @@ class VideoItemValidator
      */
     public function validatePublicationDate($publicationDate)
     {
-        return self::validateDate($publicationDate);
+        return $this->validateDate($publicationDate);
     }
 
     /**
@@ -197,7 +197,7 @@ class VideoItemValidator
      */
     public function validateGalleryLoc($galleryLoc)
     {
-        return self::validateLoc($galleryLoc);
+        return $this->validateLoc($galleryLoc);
     }
 
     /**
@@ -207,7 +207,7 @@ class VideoItemValidator
      */
     public function validateCategory($category)
     {
-        return self::validateString($category);
+        return $this->validateString($category);
     }
 
     /**
@@ -217,7 +217,7 @@ class VideoItemValidator
      */
     public function validateGalleryLocTitle($title)
     {
-        return self::validateString($title);
+        return $this->validateString($title);
     }
 
     /**
@@ -237,7 +237,7 @@ class VideoItemValidator
      */
     public function validateUploader($uploader)
     {
-        return self::validateString($uploader);
+        return $this->validateString($uploader);
     }
 
     /**
@@ -247,7 +247,7 @@ class VideoItemValidator
      */
     public function validateUploaderInfo($uploaderLoc)
     {
-        return self::validateLoc($uploaderLoc);
+        return $this->validateLoc($uploaderLoc);
     }
 
     /**

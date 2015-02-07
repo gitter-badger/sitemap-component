@@ -3,51 +3,57 @@ namespace League\Sitemap\Item\Video;
 
 use League\Sitemap\Item\AbstractItem;
 
-abstract class VideoItemUploaderTags extends AbstractItem
+class VideoItemUploaderTags extends AbstractItem
 {
     /**
-     * @var string
+     * @var array
      */
-    protected static $exception = 'League\Sitemap\Item\Video\VideoItemException';
+    protected $xml = [
+        'uploader' => ''
+    ];
+
+    /**
+     * Resets the data structure used to represent the item as XML.
+     *
+     * @return array
+     */
+    protected function reset()
+    {
+        return ['uploader' => ''];
+    }
 
     /**
      * @param VideoItemValidator $validator
      * @param                    $uploader
      * @param null               $info
-     *
-     * @return string
      */
-    public static function setUploader($validator, $uploader, $info = null)
+    public function __construct($validator, $uploader, $info = null)
     {
-        self::validateInput(
+        $this->validateInput(
             $uploader,
             $validator,
             'validateUploader',
-            self::$exception,
             'Provided uploader is not a valid value.'
         );
 
-        self::$xml['uploader'] = '<video:uploader';
-        self::setUploaderInfo($validator, $info);
-        self::$xml['uploader'] .= '>'.$uploader.'</video:uploader>';
-
-        return self::$xml['uploader'];
+        $this->xml['uploader'] = '<video:uploader';
+        $this->setUploaderInfo($validator, $info);
+        $this->xml['uploader'] .= '>'.$uploader.'</video:uploader>';
     }
 
     /**
      * @param VideoItemValidator $validator
      * @param $info
      */
-    protected static function setUploaderInfo($validator, $info)
+    protected function setUploaderInfo($validator, $info)
     {
         if (null !== $info) {
-            self::writeAttribute(
+            $this->writeAttribute(
                 $info,
                 'uploader',
                 'info',
                 $validator,
                 'validateUploaderInfo',
-                self::$exception,
                 'Provided uploader info is not a valid value.'
             );
         }

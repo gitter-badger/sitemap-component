@@ -10,13 +10,23 @@ class UrlItemValidator
     use ValidatorTrait;
 
     /**
+     * @param $url
+     *
+     * @return false|string
+     */
+    public function validateUrl($url)
+    {
+        return $this->validateLoc($url);
+    }
+
+    /**
      * @param $lastmod
      *
      * @return string|false
      */
     public function validateLastMod($lastmod)
     {
-        return self::validateDate($lastmod);
+        return $this->validateDate($lastmod);
     }
 
     /**

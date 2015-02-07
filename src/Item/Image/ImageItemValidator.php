@@ -8,13 +8,23 @@ class ImageItemValidator
     use ValidatorTrait;
 
     /**
+     * @param $url
+     *
+     * @return false|string
+     */
+    public function validateUrl($url)
+    {
+        return $this->validateLoc($url);
+    }
+
+    /**
      * @param $title
      *
      * @return string|false
      */
     public function validateTitle($title)
     {
-        return self::validateString($title);
+        return $this->validateString($title);
     }
 
     /**
@@ -24,7 +34,7 @@ class ImageItemValidator
      */
     public function validateCaption($caption)
     {
-        return self::validateString($caption);
+        return $this->validateString($caption);
     }
 
     /**
@@ -34,7 +44,7 @@ class ImageItemValidator
      */
     public function validateGeoLocation($geoLocation)
     {
-        return self::validateString($geoLocation);
+        return $this->validateString($geoLocation);
     }
 
     /**
@@ -44,6 +54,6 @@ class ImageItemValidator
      */
     public function validateLicense($license)
     {
-        return self::validateString($license);
+        return $this->validateString($license);
     }
 }

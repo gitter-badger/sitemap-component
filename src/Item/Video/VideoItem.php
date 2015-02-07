@@ -11,11 +11,6 @@ class VideoItem extends AbstractItem
     protected $validator;
 
     /**
-     * @var string
-     */
-    protected $exception = 'League\Sitemap\Item\Video\VideoItemException';
-
-    /**
      * @param $title
      * @param $contentLoc
      * @param $playerLoc
@@ -24,8 +19,8 @@ class VideoItem extends AbstractItem
      */
     public function __construct($title, $contentLoc, $playerLoc, $playerEmbedded = null, $playerAutoplay = null)
     {
-        $this->validator = VideoItemValidator::getInstance();
-        self::$xml       = $this->reset();
+        $this->validator = new VideoItemValidator();
+        $this->xml       = $this->reset();
         $this->setTitle($title);
         $this->setContentLoc($contentLoc);
         $this->setPlayerLoc($playerLoc, $playerEmbedded, $playerAutoplay);
@@ -67,12 +62,12 @@ class VideoItem extends AbstractItem
     /**
      * @param $title
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     protected function setTitle($title)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $title,
             'title',
             true,
@@ -88,12 +83,12 @@ class VideoItem extends AbstractItem
     /**
      * @param $loc
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     protected function setContentLoc($loc)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $loc,
             'content_loc',
             true,
@@ -112,17 +107,13 @@ class VideoItem extends AbstractItem
      * @param $playerEmbedded
      * @param $playerAutoPlay
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     protected function setPlayerLoc($loc, $playerEmbedded, $playerAutoPlay)
     {
-        self::$xml['player_loc'] = VideoItemPlayerTags::setPlayerLoc(
-            $this->validator,
-            $loc,
-            $playerEmbedded,
-            $playerAutoPlay
-        );
+        $playerLocTags = new VideoItemPlayerTags($this->validator, $loc, $playerEmbedded, $playerAutoPlay);
+        $this->xml['player_loc'] = $playerLocTags->build();
 
         return $this;
     }
@@ -131,12 +122,12 @@ class VideoItem extends AbstractItem
     /**
      * @param $loc
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setThumbnailLoc($loc)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $loc,
             'thumbnail_loc',
             true,
@@ -152,12 +143,12 @@ class VideoItem extends AbstractItem
     /**
      * @param $description
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setDescription($description)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $description,
             'description',
             true,
@@ -173,12 +164,12 @@ class VideoItem extends AbstractItem
     /**
      * @param $duration
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setDuration($duration)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $duration,
             'duration',
             true,
@@ -194,12 +185,12 @@ class VideoItem extends AbstractItem
     /**
      * @param $expirationDate
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setExpirationDate($expirationDate)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $expirationDate,
             'expiration_date',
             true,
@@ -215,12 +206,12 @@ class VideoItem extends AbstractItem
     /**
      * @param $rating
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setRating($rating)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $rating,
             'rating',
             true,
@@ -236,12 +227,12 @@ class VideoItem extends AbstractItem
     /**
      * @param $viewCount
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setViewCount($viewCount)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $viewCount,
             'view_count',
             true,
@@ -257,12 +248,12 @@ class VideoItem extends AbstractItem
     /**
      * @param $publicationDate
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setPublicationDate($publicationDate)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $publicationDate,
             'publication_date',
             true,
@@ -278,12 +269,12 @@ class VideoItem extends AbstractItem
     /**
      * @param $familyFriendly
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setFamilyFriendly($familyFriendly)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $familyFriendly,
             'family_friendly',
             true,
@@ -300,7 +291,7 @@ class VideoItem extends AbstractItem
      * @param      $restriction
      * @param null $relationship
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setRestriction($restriction, $relationship = null)
@@ -312,9 +303,9 @@ class VideoItem extends AbstractItem
             'Provided restriction is not a valid value.'
         );
 
-        self::$xml['restriction'] = '<video:restriction';
+        $this->xml['restriction'] = '<video:restriction';
         $this->setRestrictionRelationship($relationship);
-        self::$xml['restriction'] .= '>'.$restriction.'</video:restriction>';
+        $this->xml['restriction'] .= '>'.$restriction.'</video:restriction>';
 
         return $this;
     }
@@ -322,7 +313,7 @@ class VideoItem extends AbstractItem
     /**
      * @param $relationship
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     protected function setRestrictionRelationship($relationship)
@@ -334,7 +325,7 @@ class VideoItem extends AbstractItem
                 'relationship',
                 $this->validator,
                 'validateRestrictionRelationship',
-                    'Provided restriction relationship is not a valid value.'
+                'Provided restriction relationship is not a valid value.'
             );
         }
 
@@ -349,7 +340,8 @@ class VideoItem extends AbstractItem
      */
     public function setGalleryLoc($galleryLoc, $title = null)
     {
-        self::$xml['gallery_loc'] = VideoItemGalleryTags::setGalleryLoc($this->validator, $galleryLoc, $title);
+        $galleryLocTags = new VideoItemGalleryTags($this->validator, $galleryLoc, $title);
+        $this->xml['gallery_loc'] = $galleryLocTags->build();
 
         return $this;
     }
@@ -360,12 +352,14 @@ class VideoItem extends AbstractItem
      * @param string $type
      * @param string $resolution
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return VideoItem
      */
     public function setPrice($price, $currency, $type = null, $resolution = null)
     {
-        self::$xml['price'] .= VideoItemPriceTags::setPrice($this->validator, $price, $currency, $type, $resolution);
+        $priceTag = new VideoItemPriceTags($this->validator, $price, $currency, $type, $resolution);
+
+        $this->xml['price'] .= $priceTag->build();
 
         return $this;
     }
@@ -373,12 +367,12 @@ class VideoItem extends AbstractItem
     /**
      * @param $category
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setCategory($category)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $category,
             'category',
             true,
@@ -394,7 +388,7 @@ class VideoItem extends AbstractItem
     /**
      * @param array $tag
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setTag(array $tag)
@@ -407,7 +401,7 @@ class VideoItem extends AbstractItem
         );
 
         foreach ($tag as $tagName) {
-            self::$xml['tag'] .= '<video:tag>'.$tagName.'</video:tag>';
+            $this->xml['tag'] .= '<video:tag>'.$tagName.'</video:tag>';
         }
 
         return $this;
@@ -416,12 +410,12 @@ class VideoItem extends AbstractItem
     /**
      * @param $requires
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setRequiresSubscription($requires)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $requires,
             'requires_subscription',
             true,
@@ -438,19 +432,20 @@ class VideoItem extends AbstractItem
      * @param      $uploader
      * @param null $info
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return string
      */
     public function setUploader($uploader, $info = null)
     {
-        self::$xml['uploader'] = VideoItemUploaderTags::setUploader($this->validator, $uploader, $info);
+        $uploaderTags = new VideoItemUploaderTags($this->validator, $uploader, $info);
+        $this->xml['uploader'] = $uploaderTags->build();
     }
 
     /**
      * @param      $platform
      * @param null $relationship
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setPlatform($platform, $relationship = null)
@@ -462,9 +457,9 @@ class VideoItem extends AbstractItem
             'Provided platform is not a valid value.'
         );
 
-        self::$xml['platform'] = '<video:platform';
+        $this->xml['platform'] = '<video:platform';
         $this->setPlatformRelationship($relationship);
-        self::$xml['platform'] .= '>'.$platform.'</video:platform>';
+        $this->xml['platform'] .= '>'.$platform.'</video:platform>';
 
         return $this;
     }
@@ -472,7 +467,7 @@ class VideoItem extends AbstractItem
     /**
      * @param $relationship
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     protected function setPlatformRelationship($relationship)
@@ -484,7 +479,7 @@ class VideoItem extends AbstractItem
                 'relationship',
                 $this->validator,
                 'validatePlatformRelationship',
-                    'Provided relationship is not a valid value.'
+                'Provided relationship is not a valid value.'
             );
         }
 
@@ -494,12 +489,12 @@ class VideoItem extends AbstractItem
     /**
      * @param $live
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setLive($live)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $live,
             'live',
             true,

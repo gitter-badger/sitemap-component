@@ -3,43 +3,46 @@ namespace League\Sitemap\Item\Video;
 
 use League\Sitemap\Item\AbstractItem;
 
-abstract class VideoItemPlayerTags extends AbstractItem
+class VideoItemPlayerTags extends AbstractItem
 {
     /**
-     * @var string
+     * @var array
      */
-    protected static $tag = '';
+    protected $xml = [
+        'player_loc' => '',
+    ];
 
     /**
-     * @var string
+     * Resets the data structure used to represent the item as XML.
+     *
+     * @return array
      */
-    protected static $exception = 'League\Sitemap\Item\Video\VideoItemException';
+    protected function reset()
+    {
+        return ['player_loc' => ''];
+    }
+
 
     /**
      * @param VideoItemValidator $validator
      * @param                    $loc
      * @param                    $playerEmbedded
      * @param                    $playerAutoPlay
-     *
-     * @return string
      */
-    public static function setPlayerLoc($validator, $loc, $playerEmbedded, $playerAutoPlay)
+    public function __construct($validator, $loc, $playerEmbedded, $playerAutoPlay)
     {
-        self::validateInput(
+        $this->validateInput(
             $loc,
             $validator,
             'validatePlayerLoc',
-            self::$exception,
             'Provided player URL is not a valid value.'
         );
 
-        self::$tag = '<video:player_loc';
-        self::setPlayerEmbedded($validator, $playerEmbedded);
-        self::setPlayerAutoPlay($validator, $playerAutoPlay);
+        $this->xml['player_loc'] = '<video:player_loc';
+        $this->setPlayerEmbedded($validator, $playerEmbedded);
+        $this->setPlayerAutoPlay($validator, $playerAutoPlay);
 
-        self::$tag .= '>'.$loc.'</video:player_loc>';
-
-        return self::$tag;
+        $this->xml['player_loc'] .= '>'.$loc.'</video:player_loc>';
     }
 
     /**
@@ -47,16 +50,15 @@ abstract class VideoItemPlayerTags extends AbstractItem
      * @param $playerEmbedded
      *
      */
-    protected static function setPlayerEmbedded($validator, $playerEmbedded)
+    protected function setPlayerEmbedded($validator, $playerEmbedded)
     {
         if (null !== $playerEmbedded) {
-            self::writeAttribute(
+            $this->writeAttribute(
                 $playerEmbedded,
                 'player_loc',
                 'allow_embed',
                 $validator,
                 'validateAllowEmbed',
-                self::$exception,
                 'Provided player allow embed is not a valid value.'
             );
         }
@@ -66,16 +68,15 @@ abstract class VideoItemPlayerTags extends AbstractItem
      * @param VideoItemValidator $validator
      * @param $playerAutoplay
      */
-    protected static function setPlayerAutoPlay($validator, $playerAutoplay)
+    protected function setPlayerAutoPlay($validator, $playerAutoplay)
     {
         if (null !== $playerAutoplay) {
-            self::writeAttribute(
+            $this->writeAttribute(
                 $playerAutoplay,
                 'player_loc',
                 'autoplay',
                 $validator,
                 'validateAutoPlay',
-                self::$exception,
                 'Provided player autoplay is not a valid value.'
             );
         }

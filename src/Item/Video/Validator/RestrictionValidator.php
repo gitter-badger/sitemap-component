@@ -525,7 +525,7 @@ final class RestrictionValidator
             $countries = array_filter($countries);
         }
 
-        //Foreach value, check if it is a valid self::$iso3166 value
+        //Foreach value, check if it is a valid $this->iso3166 value
         foreach ($countries as $country) {
             $country = preg_replace('/[^a-z]/i', '', $country);
             $country = strtoupper($country);

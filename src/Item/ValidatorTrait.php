@@ -4,14 +4,12 @@ namespace League\Sitemap\Item;
 
 trait ValidatorTrait
 {
-    use SingletonTrait;
-
     /**
      * @param $string
      *
      * @return string|false
      */
-    public static function validateString($string)
+    protected function validateString($string)
     {
         if (is_string($string) && strlen($string) > 0) {
             return $string;
@@ -27,7 +25,7 @@ trait ValidatorTrait
      *
      * @return string|false
      */
-    public static function validateLoc($value)
+    protected function validateLoc($value)
     {
         if (filter_var($value, FILTER_VALIDATE_URL, ['options' => ['flags' => FILTER_FLAG_PATH_REQUIRED]])
             && strlen($value) > 0
@@ -46,7 +44,7 @@ trait ValidatorTrait
      *
      * @return string|false
      */
-    public static function validateDate($value)
+    protected function validateDate($value)
     {
         if (is_string($value) && strlen($value) > 0 && (
                 false !== ($date1 = \DateTime::createFromFormat('Y-m-d\TH:i:sP', $value))
@@ -65,7 +63,7 @@ trait ValidatorTrait
         return false;
     }
 
-    public static function validateInteger($dimension)
+    protected function validateInteger($dimension)
     {
         if (filter_var($dimension, FILTER_SANITIZE_NUMBER_INT) && $dimension > 0) {
             return $dimension;

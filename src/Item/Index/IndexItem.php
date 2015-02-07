@@ -34,7 +34,7 @@ class IndexItem extends UrlItem
     /**
      * @param $priority
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setPriority($priority)
@@ -45,7 +45,7 @@ class IndexItem extends UrlItem
     /**
      * @param $changeFreq
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setChangeFreq($changeFreq)

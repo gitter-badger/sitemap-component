@@ -3,36 +3,49 @@ namespace League\Sitemap\Item\Video;
 
 use League\Sitemap\Item\AbstractItem;
 
-abstract class VideoItemPriceTags extends AbstractItem
+class VideoItemPriceTags extends AbstractItem
 {
     /**
-     * @param VideoItemValidator $validator
-     * @param                    $price
-     * @param                    $currency
-     * @param string|null        $type
-     * @param string|null        $resolution
-     *
-     * @return string
+     * @var array
      */
-    public static function setPrice($validator, $price, $currency, $type = null, $resolution = null)
-    {
-        self::$xml['price'] .= '<video:price';
-        self::setPriceValue($validator, $price);
-        self::setPriceCurrency($validator, $currency);
-        self::setPriceType($validator, $type);
-        self::setPriceResolution($validator, $resolution);
-        self::$xml['price'] .= '>'.$price.'</video:price>';
+    protected $xml = [
+        'price' => ''
+    ];
 
-        return self::$xml['price'];
+    /**
+     * Resets the data structure used to represent the item as XML.
+     *
+     * @return array
+     */
+    protected function reset()
+    {
+        return ['price' => ''];
+    }
+
+    /**
+     * @param      $validator
+     * @param      $price
+     * @param      $currency
+     * @param null $type
+     * @param null $resolution
+     */
+    public function __construct($validator, $price, $currency, $type = null, $resolution = null)
+    {
+        $this->xml['price'] .= '<video:price';
+        $this->setPriceValue($validator, $price);
+        $this->setPriceCurrency($validator, $currency);
+        $this->setPriceType($validator, $type);
+        $this->setPriceResolution($validator, $resolution);
+        $this->xml['price'] .= '>'.$price.'</video:price>';
     }
 
     /**
      * @param VideoItemValidator $validator
      * @param $price
      */
-    protected static function setPriceValue($validator, $price)
+    protected function setPriceValue($validator, $price)
     {
-        self::validateInput(
+        $this->validateInput(
             $price,
             $validator,
             'validatePrice',
@@ -45,9 +58,9 @@ abstract class VideoItemPriceTags extends AbstractItem
      * @param $currency
      *
      */
-    protected static function setPriceCurrency($validator, $currency)
+    protected function setPriceCurrency($validator, $currency)
     {
-        self::writeAttribute(
+        $this->writeAttribute(
             $currency,
             'price',
             'currency',
@@ -62,10 +75,10 @@ abstract class VideoItemPriceTags extends AbstractItem
      * @param string|null $type
      *
      */
-    protected static function setPriceType($validator, $type)
+    protected function setPriceType($validator, $type)
     {
         if (null !== $type) {
-            self::writeAttribute(
+            $this->writeAttribute(
                 $type,
                 'price',
                 'type',
@@ -81,10 +94,10 @@ abstract class VideoItemPriceTags extends AbstractItem
      * @param string|null $resolution
      *
      */
-    protected static function setPriceResolution($validator, $resolution)
+    protected function setPriceResolution($validator, $resolution)
     {
         if (null !== $resolution) {
-            self::writeAttribute(
+            $this->writeAttribute(
                 $resolution,
                 'price',
                 'resolution',

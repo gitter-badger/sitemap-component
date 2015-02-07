@@ -3,56 +3,58 @@ namespace League\Sitemap\Item\Video;
 
 use League\Sitemap\Item\AbstractItem;
 
-abstract class VideoItemGalleryTags extends AbstractItem
+class VideoItemGalleryTags extends AbstractItem
 {
     /**
-     * @var string
+     * @var array
      */
-    protected static $tag = '';
+    protected $xml = [
+        'gallery_loc' => ''
+    ];
 
     /**
-     * @var string
+     * Resets the data structure used to represent the item as XML.
+     *
+     * @return array
      */
-    protected static $exception = 'League\Sitemap\Item\Video\VideoItemException';
+    protected function reset()
+    {
+        return ['gallery_loc' => ''];
+    }
+
 
     /**
      * @param VideoItemValidator $validator
      * @param                    $galleryLoc
      * @param null               $title
-     *
-     * @return string
      */
-    public static function setGalleryLoc($validator, $galleryLoc, $title = null)
+    public function __construct($validator, $galleryLoc, $title = null)
     {
-        self::validateInput(
+        $this->validateInput(
             $galleryLoc,
             $validator,
             'validateGalleryLoc',
-            self::$exception,
             'Provided gallery URL is not a valid value.'
         );
 
-        self::$xml['gallery_loc'] = '<video:gallery_loc';
-        self::setGalleryTitle($validator, $title);
-        self::$xml['gallery_loc'] .= '>'.$galleryLoc.'</video:gallery_loc>';
-
-        return self::$xml['gallery_loc'];
+        $this->xml['gallery_loc'] = '<video:gallery_loc';
+        $this->setGalleryTitle($validator, $title);
+        $this->xml['gallery_loc'] .= '>'.$galleryLoc.'</video:gallery_loc>';
     }
 
     /**
      * @param VideoItemValidator $validator
      * @param $title
      */
-    protected static function setGalleryTitle($validator, $title)
+    protected function setGalleryTitle($validator, $title)
     {
         if (null !== $title) {
-            self::writeAttribute(
+            $this->writeAttribute(
                 $title,
                 'gallery_loc',
                 'title',
                 $validator,
                 'validateGalleryLocTitle',
-                self::$exception,
                 'Provided gallery title is not a valid value.'
             );
         }

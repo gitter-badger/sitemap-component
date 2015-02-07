@@ -7,6 +7,8 @@ use League\Sitemap\Item\ValidatorTrait;
 
 class MediaSitemap extends Sitemap
 {
+    use ValidatorTrait;
+
     /**
      * @var string
      */
@@ -44,7 +46,7 @@ class MediaSitemap extends Sitemap
      */
     protected function setStringValue($tag, $string)
     {
-        if (false === ValidatorTrait::validateString($string)) {
+        if (false === $this->validateString($string)) {
             throw new \InvalidArgumentException(sprintf('Value for %s is not valid', $tag));
         }
 
@@ -59,7 +61,7 @@ class MediaSitemap extends Sitemap
      */
     public function setLink($link)
     {
-        if (false === ValidatorTrait::validateLoc($link)) {
+        if (false === $this->validateLoc($link)) {
             throw new \InvalidArgumentException('Value for setLink is not a valid URL');
         }
 

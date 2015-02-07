@@ -45,11 +45,15 @@ class DummyAbstractSitemap extends AbstractSitemap
      * @param        $item
      * @param string $url
      *
+     * @throws \InvalidArgumentException
      * @return $this|mixed
      */
     public function add($item, $url = '')
     {
-        $this->validateLoc($url);
+        if (false === $this->validateLoc($url)) {
+            throw new \InvalidArgumentException(sprintf('Provided url is not valid.'));
+        }
+
         return $this;
     }
 }

@@ -7,7 +7,7 @@ abstract class AbstractItem implements ItemInterface
     /**
      * @var array
      */
-    protected static $xml = [];
+    protected $xml = [];
 
     /**
      * Collapses the item to its string XML representation.
@@ -16,7 +16,7 @@ abstract class AbstractItem implements ItemInterface
      */
     public function build()
     {
-        $xml  = array_filter(self::$xml);
+        $xml  = array_filter($this->xml);
         $data = implode("", $xml);
 
         return $data."\n";
@@ -38,7 +38,7 @@ abstract class AbstractItem implements ItemInterface
      * @param string $validationMethod
      * @param string $exceptionMsg
      */
-    protected static function writeFullTag(
+    protected function writeFullTag(
         $value,
         $name,
         $cdata,
@@ -47,8 +47,8 @@ abstract class AbstractItem implements ItemInterface
         $validationMethod,
         $exceptionMsg
     ) {
-        $value = self::validateInput($value, $validationClass, $validationMethod, $exceptionMsg);
-        self::writeFullTagTemplate($value, $name, $cdata, $tag);
+        $value = $this->validateInput($value, $validationClass, $validationMethod, $exceptionMsg);
+        $this->writeFullTagTemplate($value, $name, $cdata, $tag);
     }
 
     /**
@@ -57,13 +57,13 @@ abstract class AbstractItem implements ItemInterface
      * @param boolean $cdata
      * @param string  $tag
      */
-    protected static function writeFullTagTemplate($value, $name, $cdata, $tag)
+    protected function writeFullTagTemplate($value, $name, $cdata, $tag)
     {
         $xml = "<{$tag}>$value</{$tag}>";
         if ($cdata) {
             $xml = "<{$tag}><![CDATA[$value]]></{$tag}>";
         }
-        self::$xml[$name] .= $xml;
+        $this->xml[$name] .= $xml;
     }
 
     /**
@@ -74,7 +74,7 @@ abstract class AbstractItem implements ItemInterface
      * @param string $validationMethod
      * @param string $exceptionMsg
      */
-    protected static function writeAttribute(
+    protected function writeAttribute(
         $value,
         $name,
         $attributeName,
@@ -83,8 +83,8 @@ abstract class AbstractItem implements ItemInterface
         $exceptionMsg
     ) {
         list() = func_get_args();
-        $value = self::validateInput($value, $validationClass, $validationMethod, $exceptionMsg);
-        self::$xml[$name] .= " {$attributeName}=\"{$value}\"";
+        $value = $this->validateInput($value, $validationClass, $validationMethod, $exceptionMsg);
+        $this->xml[$name] .= " {$attributeName}=\"{$value}\"";
     }
 
     /**
@@ -96,7 +96,7 @@ abstract class AbstractItem implements ItemInterface
      * @return mixed
      * @throws \InvalidArgumentException
      */
-    protected static function validateInput($value, $validationClass, $validationMethod, $exceptionMsg)
+    protected function validateInput($value, $validationClass, $validationMethod, $exceptionMsg)
     {
         $value = call_user_func_array([$validationClass, $validationMethod], [$value]);
         if (false === $value) {

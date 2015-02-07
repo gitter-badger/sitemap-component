@@ -11,13 +11,23 @@ class NewsItemValidator
     use ValidatorTrait;
 
     /**
+     * @param $url
+     *
+     * @return false|string
+     */
+    public function validateUrl($url)
+    {
+        return $this->validateLoc($url);
+    }
+
+    /**
      * @param $name
      *
      * @return string|false
      */
     public function validateName($name)
     {
-        return self::validateString($name);
+        return $this->validateString($name);
     }
 
     /**
@@ -57,7 +67,7 @@ class NewsItemValidator
      */
     public function validatePublicationDate($publicationDate)
     {
-        return self::validateDate($publicationDate);
+        return $this->validateDate($publicationDate);
     }
 
     /**
@@ -67,7 +77,7 @@ class NewsItemValidator
      */
     public function validateTitle($title)
     {
-        return self::validateString($title);
+        return $this->validateString($title);
     }
 
     /**
@@ -77,7 +87,7 @@ class NewsItemValidator
      */
     public function validateKeywords($keywords)
     {
-        return self::validateString($keywords);
+        return $this->validateString($keywords);
     }
 
     /**
@@ -87,6 +97,6 @@ class NewsItemValidator
      */
     public function validateStockTickers($stock)
     {
-        return self::validateString($stock);
+        return $this->validateString($stock);
     }
 }

@@ -6,7 +6,7 @@ class SubmitSitemap
     /**
      * @var array
      */
-    protected static $sites = [
+    protected $sites = [
         'google' => 'http://www.google.com/webmasters/tools/ping?sitemap={{sitemap}}',
         'bing'   => 'http://www.bing.com/webmaster/ping.aspx?siteMap={{sitemap}}',
     ];
@@ -19,13 +19,13 @@ class SubmitSitemap
      * @return array
      * @throws \InvalidArgumentException
      */
-    public static function send($url)
+    public function send($url)
     {
         if (false === filter_var($url, FILTER_VALIDATE_URL, ['options' => ['flags' => FILTER_FLAG_PATH_REQUIRED]])) {
             throw new \InvalidArgumentException("The value for \$url is not a valid URL resource.");
         }
 
-        return self::submitSitemap($url);
+        return $this->submitSitemap($url);
     }
 
     /**
@@ -35,13 +35,13 @@ class SubmitSitemap
      *
      * @return array            Array with the search engine submission success status as a boolean.
      */
-    protected static function submitSitemap($url)
+    protected function submitSitemap($url)
     {
         $response = [];
 
-        foreach (self::$sites as $site => $baseUrl) {
+        foreach ($this->sites as $site => $baseUrl) {
             $submitUrl = str_replace('{{sitemap}}', $url, $baseUrl);
-            $response  = self::executeCurl($submitUrl, $response, $site);
+            $response  = $this->executeCurl($submitUrl, $response, $site);
         }
 
         return $response;
@@ -54,7 +54,7 @@ class SubmitSitemap
      *
      * @return array
      */
-    protected static function executeCurl($submitUrl, array &$response, $site)
+    protected function executeCurl($submitUrl, array &$response, $site)
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $submitUrl);

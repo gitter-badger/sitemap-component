@@ -15,8 +15,8 @@ class UrlItem extends AbstractItem
      */
     public function __construct($loc)
     {
-        $this->validator = UrlItemValidator::getInstance();
-        self::$xml       = $this->reset();
+        $this->validator = new UrlItemValidator();
+        $this->xml       = $this->reset();
         $this->setLoc($loc);
     }
 
@@ -40,18 +40,18 @@ class UrlItem extends AbstractItem
     /**
      * @param $loc
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     protected function setLoc($loc)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $loc,
             'loc',
             false,
             'loc',
             $this->validator,
-            'validateLoc',
+            'validateUrl',
             'Provided URL is not a valid value.'
         );
 
@@ -61,12 +61,12 @@ class UrlItem extends AbstractItem
     /**
      * @param $lastmod
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setLastMod($lastmod)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $lastmod,
             'lastmod',
             false,
@@ -82,12 +82,12 @@ class UrlItem extends AbstractItem
     /**
      * @param $changeFreq
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setChangeFreq($changeFreq)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $changeFreq,
             'changefreq',
             false,
@@ -103,12 +103,12 @@ class UrlItem extends AbstractItem
     /**
      * @param $priority
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setPriority($priority)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $priority,
             'priority',
             false,

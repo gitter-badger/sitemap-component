@@ -19,7 +19,7 @@ class SubmitSitemapTest extends PHPUnit_Framework_TestCase
 
     public function testItShouldSubmitValidSitemapUrl()
     {
-        $result = SubmitSitemap::send($this->url);
+        $result = (new SubmitSitemap())->send($this->url);
         $expected = ['google' => true, 'bing' => true];
 
         $this->assertNotEmpty($result);
@@ -30,6 +30,6 @@ class SubmitSitemapTest extends PHPUnit_Framework_TestCase
     public function testItShouldSubmitValidSitemapNonValidUrl()
     {
         $this->setExpectedException($this->exception);
-        SubmitSitemap::send('not a valid url');
+        (new SubmitSitemap())->send('not a valid url');
     }
 }

@@ -15,8 +15,8 @@ class ImageItem extends AbstractItem
      */
     public function __construct($loc)
     {
-        $this->validator = ImageItemValidator::getInstance();
-        self::$xml       = $this->reset();
+        $this->validator = new ImageItemValidator();
+        $this->xml       = $this->reset();
         $this->setLoc($loc);
     }
 
@@ -41,18 +41,18 @@ class ImageItem extends AbstractItem
     /**
      * @param $loc
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     protected function setLoc($loc)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $loc,
             'loc',
             false,
             'image:loc',
             $this->validator,
-            'validateLoc',
+            'validateUrl',
             'Provided URL is not a valid value.'
         );
 
@@ -64,11 +64,11 @@ class ImageItem extends AbstractItem
      * @param $title
      *
      * @return $this
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      */
     public function setTitle($title)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $title,
             'title',
             true,
@@ -84,12 +84,12 @@ class ImageItem extends AbstractItem
     /**
      * @param $caption
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setCaption($caption)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $caption,
             'caption',
             true,
@@ -105,12 +105,12 @@ class ImageItem extends AbstractItem
     /**
      * @param $geoLocation
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setGeoLocation($geoLocation)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $geoLocation,
             'geolocation',
             true,
@@ -126,12 +126,12 @@ class ImageItem extends AbstractItem
     /**
      * @param $license
      *
-     * @throws \League\Sitemap\Item\\InvalidArgumentException
+     * @throws \InvalidArgumentException
      * @return $this
      */
     public function setLicense($license)
     {
-        self::writeFullTag(
+        $this->writeFullTag(
             $license,
             'license',
             true,
